@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'News App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -27,10 +27,17 @@ class NewsListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('News App'),
       ),
-      body: ListView(
-        children: getArticlesJson.map((json) {
-          return _buildArticleItem(context, Article.fromJson(json));
-        }).toList(),
+      body: FutureBuilder<String>(
+        future:
+            DefaultAssetBundle.of(context).loadString('assets/articles.json'),
+        builder: (context, snapshot) {
+          final List<Article> articles = parseArticles(snapshot.data);
+          return ListView(
+            children: articles
+                .map((article) => _buildArticleItem(context, article))
+                .toList(),
+          );
+        },
       ),
     );
   }
@@ -47,18 +54,20 @@ class NewsListPage extends StatelessWidget {
       subtitle: Text(article.author),
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailArticlePage(url: article.url)));
+          context,
+          MaterialPageRoute(
+            builder: (context) => ArticleDetailPage(url: article.url),
+          ),
+        );
       },
     );
   }
 }
 
-class DetailArticlePage extends StatelessWidget {
+class ArticleDetailPage extends StatelessWidget {
   final String url;
 
-  DetailArticlePage({@required this.url});
+  ArticleDetailPage({@required this.url});
 
   @override
   Widget build(BuildContext context) {
