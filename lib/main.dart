@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      // When using home, don’t define a initialRoute property.
       home: HomePage(title: title),
+      routes: {
+        DetailPage.routeName: (context) => DetailPage(),
+      },
     );
   }
 }
