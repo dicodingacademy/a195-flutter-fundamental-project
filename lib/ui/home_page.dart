@@ -30,9 +30,9 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildBody(NewsProvider state) {
-    if (state.isLoading) {
+    if (state.state == ResultState.Loading) {
       return Center(child: CircularProgressIndicator());
-    } else if (state.result != null) {
+    } else if (state.state == ResultState.HasData) {
       return ListView.separated(
         separatorBuilder: (context, index) => Divider(
           color: Colors.black,
@@ -54,9 +54,9 @@ class HomePage extends StatelessWidget {
           );
         },
       );
-    } else if (state.isEmpty) {
+    } else if (state.state == ResultState.NoData) {
       return Center(child: Text(state.message));
-    } else if (state.isError) {
+    } else if (state.state == ResultState.Error) {
       return Center(child: Text(state.message));
     } else {
       return Center(child: Text(''));
