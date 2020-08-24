@@ -39,21 +39,21 @@ packages:
   collection:
     dependency: transitive
     description:
-      name: collection
+      name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.13"
   convert:
     dependency: transitive
     description:
-      name: convert
+      name: clock
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
-  crypto:
+    version: "1.0.1"
+  collection:
     dependency: transitive
     description:
-      name: crypto
+      name: collection
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
