@@ -1,6 +1,6 @@
 import 'package:dicoding_news_app/article.dart';
+import 'package:dicoding_news_app/article_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,10 +32,11 @@ class NewsListPage extends StatelessWidget {
             DefaultAssetBundle.of(context).loadString('assets/articles.json'),
         builder: (context, snapshot) {
           final List<Article> articles = parseArticles(snapshot.data);
-          return ListView(
-            children: articles
-                .map((article) => _buildArticleItem(context, article))
-                .toList(),
+          return ListView.builder(
+            itemCount: articles.length,
+            itemBuilder: (context, index) {
+              return _buildArticleItem(context, articles[index]);
+            },
           );
         },
       ),
@@ -56,28 +57,12 @@ class NewsListPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ArticleDetailPage(url: article.url),
+            builder: (context) => ArticleDetailPage(
+              article: article,
+            ),
           ),
         );
       },
-    );
-  }
-}
-
-class ArticleDetailPage extends StatelessWidget {
-  final String url;
-
-  ArticleDetailPage({@required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('News App'),
-      ),
-      body: WebView(
-        initialUrl: url,
-      ),
     );
   }
 }
