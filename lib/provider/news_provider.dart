@@ -4,6 +4,8 @@ import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/data/model/articles.dart';
 import 'package:flutter/material.dart';
 
+enum ResultState { Loading, NoData, HasData, Error }
+
 class NewsProvider extends ChangeNotifier {
   final ApiService apiService;
 
@@ -11,46 +13,32 @@ class NewsProvider extends ChangeNotifier {
     _fetchAllArticle();
   }
 
-  bool _isLoading = false;
-  bool _isEmpty = false;
-  bool _isError = false;
-  String _message = '';
   ArticlesResult _articlesResult;
-
-  bool get isLoading => _isLoading;
-
-  bool get isEmpty => _isEmpty;
-
-  bool get isError => _isError;
+  String _message = '';
+  ResultState _state;
 
   String get message => _message;
 
   ArticlesResult get result => _articlesResult;
 
+  ResultState get state => _state;
+
   Future<dynamic> _fetchAllArticle() async {
     try {
-      _isLoading = true;
-      _isEmpty = false;
-      _isError = false;
+      _state = ResultState.Loading;
       notifyListeners();
       final article = await apiService.topHeadlines();
       if (article.articles.isEmpty) {
-        _isLoading = false;
-        _isError = false;
-        _isEmpty = true;
+        _state = ResultState.NoData;
         notifyListeners();
         return _message = 'Empty Data';
       } else {
-        _isLoading = false;
-        _isError = false;
-        _isEmpty = false;
+        _state = ResultState.HasData;
         notifyListeners();
         return _articlesResult = article;
       }
     } catch (e) {
-      _isLoading = false;
-      _isError = true;
-      _isEmpty = false;
+      _state = ResultState.Error;
       notifyListeners();
       return _message = 'Error --> $e';
     }
