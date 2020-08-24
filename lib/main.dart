@@ -1,8 +1,7 @@
 import 'package:dicoding_news_app/article.dart';
 import 'package:dicoding_news_app/styles.dart';
+import 'package:dicoding_news_app/article_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,10 +41,11 @@ class NewsListPage extends StatelessWidget {
             DefaultAssetBundle.of(context).loadString('assets/articles.json'),
         builder: (context, snapshot) {
           final List<Article> articles = parseArticles(snapshot.data);
-          return ListView(
-            children: articles
-                .map((article) => _buildArticleItem(context, article))
-                .toList(),
+          return ListView.builder(
+            itemCount: articles.length,
+            itemBuilder: (context, index) {
+              return _buildArticleItem(context, articles[index]);
+            },
           );
         },
       ),
@@ -68,60 +68,12 @@ class NewsListPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ArticleDetailPage(url: article.url),
+            builder: (context) => ArticleDetailPage(
+              article: article,
+            ),
           ),
         );
       },
-    );
-  }
-}
-
-class ArticleDetailPage extends StatelessWidget {
-  final String url;
-
-  ArticleDetailPage({@required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            WebView(
-              initialUrl: url,
-            ),
-            Card(
-              margin: EdgeInsets.all(0),
-              shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(16),
-                ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
-                    child: Text(
-                      'N',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          .copyWith(fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
