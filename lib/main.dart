@@ -20,6 +20,12 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           textTheme: myTextTheme.apply(bodyColor: Colors.black),
         ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.white70,
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+        ),
       ),
       home: NewsListPage(),
     );
