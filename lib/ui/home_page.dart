@@ -4,10 +4,23 @@ import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/widget/card_article.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String title;
 
   const HomePage({Key key, this.title}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Future<ArticlesResult> _article;
+
+  @override
+  void initState() {
+    super.initState();
+    _article = ApiService().topHeadlines();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +28,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          title,
+          widget.title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -24,7 +37,7 @@ class HomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: FutureBuilder(
-          future: ApiService().topHeadlines(),
+          future: _article,
           builder: (context, AsyncSnapshot<ArticlesResult> snapshot) {
             var state = snapshot.connectionState;
             switch (state) {
