@@ -28,53 +28,50 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'News App',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text(args.articles.title),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CachedNetworkImage(
-              imageUrl: args.articles.urlToImage,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.fill,
-              placeholder: (context, url) =>
-                  Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) =>
-                  Center(child: Icon(Icons.error)),
+            Hero(
+              tag: args.articles.urlToImage,
+              child: CachedNetworkImage(
+                imageUrl: args.articles.urlToImage,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fill,
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) =>
+                    Center(child: Icon(Icons.error)),
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(args.articles.description),
+                  Text(args.articles.description, style: Theme.of(context).textTheme.bodyText2,),
                   Divider(color: Colors.grey),
                   Text(
                     args.articles.title,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   Divider(color: Colors.grey),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Date: ${args.articles.publishedAt}'),
-                      Text(args.source.name),
+                      Text('Date: ${args.articles.publishedAt}', style: Theme.of(context).textTheme.caption,),
+                      Text(args.source.name, style: Theme.of(context).textTheme.caption,),
                     ],
                   ),
                   SizedBox(height: 10),
-                  Text('Author: ${args.articles.author}'),
+                  Text('Author: ${args.articles.author}', style: Theme.of(context).textTheme.caption,),
                   Divider(color: Colors.grey),
                   Text(
                     args.articles.content,
-                    style: TextStyle(fontSize: 16),
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(height: 10),
                   RichText(
@@ -82,7 +79,7 @@ class DetailPage extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: 'More info: ',
-                          style: TextStyle(color: Colors.black),
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         TextSpan(
                           text: args.articles.url,
