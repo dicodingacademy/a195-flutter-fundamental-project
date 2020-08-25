@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: title,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: myTextTheme,
+        appBarTheme: AppBarTheme(
+          textTheme: myTextTheme.apply(bodyColor: Colors.black),
+        ),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.white70,
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+        ),
       ),
       // When using home, don’t define a initialRoute property.
       home: HomePage(title: title),

@@ -28,14 +28,17 @@ class CardArticle extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: GestureDetector(
               onTap: onPressed,
-              child: CachedNetworkImage(
-                imageUrl: image,
-                width: MediaQuery.of(context).size.width,
-                height: 200,
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) =>
-                    Center(child: Icon(Icons.error)),
+              child: Hero(
+                tag: image,
+                child: CachedNetworkImage(
+                  imageUrl: image,
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      Center(child: Icon(Icons.error)),
+                ),
               ),
             ),
           ),
@@ -43,20 +46,13 @@ class CardArticle extends StatelessWidget {
             title,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: TextStyle(
-              color: Color(0xff212121),
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           Text(
             desc,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
-            style: TextStyle(
-              color: Colors.grey[800],
-              fontSize: 12,
-            ),
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ],
       ),

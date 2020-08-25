@@ -27,12 +27,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          widget.title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text(widget.title),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
