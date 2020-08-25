@@ -11,41 +11,48 @@ class ArticleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(article.title),
+        title: Text('News App'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(article.urlToImage),
+            Hero(
+                tag: article.urlToImage,
+                child: Image.network(article.urlToImage)),
             Padding(
               padding: EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(article.description),
+                  Text(
+                    article.description,
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                   Divider(color: Colors.grey),
                   Text(
                     article.title,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   Divider(color: Colors.grey),
-                  Text('Date: ${article.publishedAt}'),
+                  Text(
+                    'Date: ${article.publishedAt}',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
                   SizedBox(height: 10),
-                  Text('Author: ${article.author}'),
+                  Text(
+                    'Author: ${article.author}',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
                   Divider(color: Colors.grey),
                   Text(
                     article.content,
-                    style: TextStyle(fontSize: 16),
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(height: 10),
                   RaisedButton(
                     child: Text('Read more'),
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
@@ -69,12 +76,54 @@ class ArticleWebView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('News App'),
-      ),
+    return CustomScaffold(
       body: WebView(
         initialUrl: url,
+      ),
+    );
+  }
+}
+
+class CustomScaffold extends StatelessWidget {
+  final Widget body;
+
+  CustomScaffold({this.body});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            body,
+            Card(
+              margin: EdgeInsets.all(0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Text(
+                      'N',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                ],
+              ),
+              shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(16.0),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

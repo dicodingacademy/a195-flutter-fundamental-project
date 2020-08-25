@@ -56,9 +56,12 @@ class NewsListPage extends StatelessWidget {
     return ListTile(
       contentPadding:
           const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      leading: Image.network(
-        article.urlToImage,
-        width: 100,
+      leading: Hero(
+        tag: article.urlToImage,
+        child: Image.network(
+          article.urlToImage,
+          width: 100,
+        ),
       ),
       title: Text(
         article.title,
