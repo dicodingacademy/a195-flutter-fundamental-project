@@ -15,12 +15,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text(title),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
