@@ -26,32 +26,43 @@ class HomePage extends StatelessWidget {
         child: FutureBuilder(
           future: ApiService().topHeadlines(),
           builder: (context, AsyncSnapshot<ArticlesResult> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.separated(
-                separatorBuilder: (context, index) => Divider(
-                  color: Colors.black,
-                ),
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemCount: snapshot.data.articles.length,
-                itemBuilder: (context, index) {
-                  var article = snapshot.data.articles[index];
-                  return CardArticle(
-                    image: article.urlToImage,
-                    title: article.title,
-                    desc: article.description,
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      DetailPage.routeName,
-                      arguments: BundleData(article.source, article),
+            var state = snapshot.connectionState;
+            switch (state) {
+              case ConnectionState.none:
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              case ConnectionState.done:
+                if (snapshot.hasData) {
+                  return ListView.separated(
+                    separatorBuilder: (context, index) => Divider(
+                      color: Colors.black,
                     ),
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    itemCount: snapshot.data.articles.length,
+                    itemBuilder: (context, index) {
+                      var article = snapshot.data.articles[index];
+                      return CardArticle(
+                        image: article.urlToImage,
+                        title: article.title,
+                        desc: article.description,
+                        onPressed: () => Navigator.pushNamed(
+                          context,
+                          DetailPage.routeName,
+                          arguments: BundleData(article.source, article),
+                        ),
+                      );
+                    },
                   );
-                },
-              );
-            } else if (snapshot.hasError) {
-              return Center(child: Text(snapshot.error.toString()));
-            } else {
-              return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
+                } else {
+                  return Text('');
+                }
+                break;
+              default:
+                return Text('');
             }
           },
         ),
