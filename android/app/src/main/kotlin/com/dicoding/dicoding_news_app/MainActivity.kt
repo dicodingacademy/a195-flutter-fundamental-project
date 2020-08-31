@@ -1,4 +1,4 @@
-package dev.widdyjp.dicoding_news_app
+package com.dicoding.dicoding_news_app
 
 import io.flutter.embedding.android.FlutterActivity
 
