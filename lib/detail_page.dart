@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleDetailPage extends StatelessWidget {
+  static const routeName = '/article_detail';
+
   final Article article;
 
-  ArticleDetailPage({this.article});
+  const ArticleDetailPage({@required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +47,8 @@ class ArticleDetailPage extends StatelessWidget {
                   RaisedButton(
                     child: Text('Read more'),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ArticleWebView(url: article.url)));
+                      Navigator.pushNamed(context, ArticleWebView.routeName,
+                          arguments: article.url);
                     },
                   ),
                 ],
@@ -63,9 +62,11 @@ class ArticleDetailPage extends StatelessWidget {
 }
 
 class ArticleWebView extends StatelessWidget {
+  static const routeName = '/article_web';
+
   final String url;
 
-  ArticleWebView({@required this.url});
+  const ArticleWebView({@required this.url});
 
   @override
   Widget build(BuildContext context) {
