@@ -27,12 +27,23 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
         ),
       ),
-      home: NewsListPage(),
+      initialRoute: NewsListPage.routeName,
+      routes: {
+        NewsListPage.routeName: (context) => NewsListPage(),
+        ArticleDetailPage.routeName: (context) => ArticleDetailPage(
+              article: ModalRoute.of(context).settings.arguments,
+            ),
+        ArticleWebView.routeName: (context) => ArticleWebView(
+              url: ModalRoute.of(context).settings.arguments,
+            ),
+      },
     );
   }
 }
 
 class NewsListPage extends StatelessWidget {
+  static const routeName = '/article_list';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,14 +85,8 @@ class NewsListPage extends StatelessWidget {
       ),
       subtitle: Text(article.author),
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ArticleDetailPage(
-              article: article,
-            ),
-          ),
-        );
+        Navigator.pushNamed(context, ArticleDetailPage.routeName,
+            arguments: article);
       },
     );
   }
