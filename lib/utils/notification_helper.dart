@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/data/model/articles.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
@@ -33,18 +36,21 @@ class NotificationHelper {
   // Fungsi untuk menampilkan notifikasi
   static Future<void> showNotification(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-      Articles articles) async {
+      dynamic articles) async {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'your channel id', 'your channel name', 'your channel description',
         importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
 
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(
-        0, articles.title, articles.description, platformChannelSpecifics,
-        payload: 'plain notification');
+
+    var data = ArticlesResult.fromJson(json.decode(articles));
+    var title = data.articles[0].title;
+    var body = data.articles[0].description;
+
+    await flutterLocalNotificationsPlugin
+        .show(0, title, body, platformChannelSpecifics, payload: '$articles');
   }
 
   // Fungsi untuk mengatasi proses klik pada notifikasi dan mengarahkannya
@@ -52,7 +58,11 @@ class NotificationHelper {
   static void configureSelectNotificationSubject(
       BuildContext context, String route) {
     selectNotificationSubject.stream.listen((String payload) async {
-//      await Navigator.pushNamed(context, route, arguments: BundleData(payload));
+      var data = ArticlesResult.fromJson(json.decode(payload));
+      var article = data.articles[0];
+      var source = data.articles[0].source;
+      await Navigator.pushNamed(context, route,
+          arguments: BundleData(source, article));
     });
   }
 }

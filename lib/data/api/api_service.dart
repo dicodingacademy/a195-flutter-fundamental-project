@@ -17,4 +17,14 @@ class ApiService {
       throw Exception('Failed to load top headlines');
     }
   }
+
+  Future<dynamic> newsNotification() async {
+    final response = await http.get(_baseUrl +
+        "top-headlines?country=$_country&category=$_category&apiKey=$_apiKey");
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Failed to load top headlines');
+    }
+  }
 }

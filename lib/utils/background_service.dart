@@ -31,10 +31,9 @@ class BackgroundService {
   static Future<void> callback() async {
     print('Alarm fired!');
 
-    var result = await ApiService().topHeadlines();
-    var article = result.articles[0];
+    var result = await ApiService().newsNotification();
     await NotificationHelper.showNotification(
-        flutterLocalNotificationsPlugin, article);
+        flutterLocalNotificationsPlugin, result);
 
     // Ini akan menjadi nol jika kita berjalan di latar belakang.
     uiSendPort ??= IsolateNameServer.lookupPortByName(isolateName);

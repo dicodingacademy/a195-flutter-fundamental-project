@@ -49,7 +49,8 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
         ),
       ),
-      // When using home, don’t define a initialRoute property.
+      // Ketika menggunakan properti `home`, pastikan tidak menggunakan properti
+      // `initialRoute`, begitupula sebaliknya
       home: ChangeNotifierProvider<NewsProvider>(
         create: (_) => NewsProvider(apiService: ApiService()),
         child: HomePage(title: title),

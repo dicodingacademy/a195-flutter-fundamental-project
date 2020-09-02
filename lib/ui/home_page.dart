@@ -2,14 +2,39 @@ import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/setting_page.dart';
+import 'package:dicoding_news_app/utils/background_service.dart';
+import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:dicoding_news_app/widget/card_article.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String title;
 
   const HomePage({Key key, this.title}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Mendaftarkan event dari background isolate dan kemudian pesan akan selalu
+    // datang bertepatan dengan penekanan proses dari alarm.
+    port.listen((_) async => await BackgroundService.someTask());
+
+    NotificationHelper.configureSelectNotificationSubject(
+        context, DetailPage.routeName);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    selectNotificationSubject.close();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +42,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(title),
+        title: Text(widget.title),
         elevation: 0,
         actions: [
           IconButton(
