@@ -1,15 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dicoding_news_app/data/model/articles.dart';
+import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-class BundleData {
-  final Source source;
-  final Articles articles;
-
-  BundleData(this.source, this.articles);
-}
 
 class DetailPage extends StatelessWidget {
   static const routeName = '/detail_page';
@@ -51,7 +44,10 @@ class DetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(args.articles.description, style: Theme.of(context).textTheme.bodyText2,),
+                  Text(
+                    args.articles.description,
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
                   Divider(color: Colors.grey),
                   Text(
                     args.articles.title,
@@ -62,12 +58,21 @@ class DetailPage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Date: ${args.articles.publishedAt}', style: Theme.of(context).textTheme.caption,),
-                      Text(args.source.name, style: Theme.of(context).textTheme.caption,),
+                      Text(
+                        'Date: ${args.articles.publishedAt}',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                      Text(
+                        args.source.name,
+                        style: Theme.of(context).textTheme.caption,
+                      ),
                     ],
                   ),
                   SizedBox(height: 10),
-                  Text('Author: ${args.articles.author}', style: Theme.of(context).textTheme.caption,),
+                  Text(
+                    'Author: ${args.articles.author}',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
                   Divider(color: Colors.grey),
                   Text(
                     args.articles.content,

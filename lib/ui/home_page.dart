@@ -1,5 +1,7 @@
+import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
+import 'package:dicoding_news_app/ui/setting_page.dart';
 import 'package:dicoding_news_app/widget/card_article.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +19,16 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: Text(title),
         elevation: 0,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  SettingPage.route,
+                );
+              }),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

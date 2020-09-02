@@ -1,12 +1,29 @@
+import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
+import 'package:dicoding_news_app/ui/setting_page.dart';
+import 'package:dicoding_news_app/utils/background_service.dart';
+import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  // Jika terdapat sebuah fungsi yang akan dijalankan di dalam 'main', pastikan
+  // selalu tambahkan fungsi ini
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Melakukan inisiasi untuk melakukan proses background service dan notifikasi
+  BackgroundService.initializeIsolate();
+  AndroidAlarmManager.initialize();
+  await NotificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+
   runApp(MyApp());
 }
 
@@ -39,6 +56,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         DetailPage.routeName: (context) => DetailPage(),
+        SettingPage.route: (context) => SettingPage(),
       },
     );
   }
