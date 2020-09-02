@@ -21,7 +21,7 @@ Future<void> main() async {
 
   // Melakukan inisiasi untuk melakukan proses background service dan notifikasi
   BackgroundService.initializeIsolate();
-  AndroidAlarmManager.initialize();
+  await AndroidAlarmManager.initialize();
   await NotificationHelper.initNotifications(flutterLocalNotificationsPlugin);
 
   runApp(MyApp());
