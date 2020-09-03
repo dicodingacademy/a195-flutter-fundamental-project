@@ -6,13 +6,12 @@ import 'package:dicoding_news_app/data/api/api_service.dart';
 import '../main.dart';
 import 'notification_helper.dart';
 
-/// Nama yang terkait dengan isolate UI [SendPort].
-const String isolateName = 'isolate';
-
 /// Port yang digunakan untuk berkomunikasi dari background isolate ke UI isolate
 final ReceivePort port = ReceivePort();
 
 class BackgroundService {
+  /// Nama yang terkait dengan isolate UI [SendPort].
+  static String isolateName = 'isolate';
   // Background
   static SendPort uiSendPort;
 
