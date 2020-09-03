@@ -12,6 +12,7 @@ final ReceivePort port = ReceivePort();
 class BackgroundService {
   /// Nama yang terkait dengan isolate UI [SendPort].
   static String isolateName = 'isolate';
+
   // Background
   static SendPort uiSendPort;
 
@@ -30,7 +31,7 @@ class BackgroundService {
   static Future<void> callback() async {
     print('Alarm fired!');
 
-    var result = await ApiService().newsNotification();
+    var result = await ApiService().topHeadlines();
     await NotificationHelper.showNotification(
         flutterLocalNotificationsPlugin, result);
 

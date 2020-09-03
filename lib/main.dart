@@ -2,7 +2,6 @@ import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
-import 'package:dicoding_news_app/provider/notification_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:dicoding_news_app/ui/setting_page.dart';
@@ -58,10 +57,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         DetailPage.routeName: (context) => DetailPage(),
-        SettingPage.route: (context) => ChangeNotifierProvider<NotificationProvider>(
-          create: (_) => NotificationProvider(apiService: ApiService()),
-          child: SettingPage(),
-        ),
+        SettingPage.route: (context) => SettingPage(),
       },
     );
   }

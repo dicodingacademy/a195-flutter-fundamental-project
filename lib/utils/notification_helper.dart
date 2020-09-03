@@ -36,7 +36,7 @@ class NotificationHelper {
   // Fungsi untuk menampilkan notifikasi
   static Future<void> showNotification(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-      dynamic articles) async {
+      ArticlesResult articles) async {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'your channel id', 'your channel name', 'your channel description',
         importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
@@ -45,12 +45,12 @@ class NotificationHelper {
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
 
-    var data = ArticlesResult.fromJson(json.decode(articles));
-    var title = data.articles[0].title;
-    var body = data.articles[0].description;
+    var title = articles.articles[0].title;
+    var body = articles.articles[0].description;
 
-    await flutterLocalNotificationsPlugin
-        .show(0, title, body, platformChannelSpecifics, payload: '$articles');
+    await flutterLocalNotificationsPlugin.show(
+        0, title, body, platformChannelSpecifics,
+        payload: json.encode(articles.toJson()));
   }
 
   // Fungsi untuk mengatasi proses klik pada notifikasi dan mengarahkannya
