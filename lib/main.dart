@@ -1,4 +1,5 @@
 import 'package:android_alarm_manager/android_alarm_manager.dart';
+import 'package:dicoding_news_app/common/navigation_service.dart';
 import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         create: (_) => NewsProvider(apiService: ApiService()),
         child: HomePage(title: title),
       ),
+      navigatorKey: navigatorKey,
       routes: {
         DetailPage.routeName: (context) => DetailPage(),
         SettingPage.route: (context) =>

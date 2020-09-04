@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/data/model/articles.dart';
+import 'package:dicoding_news_app/ui/detail_page.dart';
+import 'package:dicoding_news_app/utils/background_service.dart';
+import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:flutter/material.dart';
 
 enum ResultState { Loading, NoData, HasData, Error }
@@ -11,6 +14,7 @@ class NewsProvider extends ChangeNotifier {
 
   NewsProvider({@required this.apiService}) {
     _fetchAllArticle();
+    _backgroundIsolate();
   }
 
   ArticlesResult _articlesResult;
@@ -42,5 +46,18 @@ class NewsProvider extends ChangeNotifier {
       notifyListeners();
       return _message = 'Error --> $e';
     }
+  }
+
+  _backgroundIsolate() async {
+    // Mendaftarkan event dari background isolate dan kemudian pesan akan selalu
+    // datang bertepatan dengan penekanan proses dari alarm.
+    port.listen((_) async => await BackgroundService.someTask());
+    NotificationHelper.configureSelectNotificationSubject(DetailPage.routeName);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    selectNotificationSubject.close();
   }
 }

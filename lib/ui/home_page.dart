@@ -1,40 +1,16 @@
 import 'package:dicoding_news_app/common/bundle_data.dart';
+import 'package:dicoding_news_app/common/navigation_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/setting_page.dart';
-import 'package:dicoding_news_app/utils/background_service.dart';
-import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:dicoding_news_app/widget/card_article.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   final String title;
 
   const HomePage({Key key, this.title}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-
-    // Mendaftarkan event dari background isolate dan kemudian pesan akan selalu
-    // datang bertepatan dengan penekanan proses dari alarm.
-    port.listen((_) async => await BackgroundService.someTask());
-
-    NotificationHelper.configureSelectNotificationSubject(
-        context, DetailPage.routeName);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    selectNotificationSubject.close();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +18,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.title),
+        title: Text(title),
         elevation: 0,
         actions: [
           IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  SettingPage.route,
-                );
-              }),
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              NavigationService.intent(SettingPage.route);
+            },
+          ),
         ],
       ),
       body: Padding(
@@ -79,10 +53,9 @@ class _HomePageState extends State<HomePage> {
             image: article.urlToImage,
             title: article.title,
             desc: article.description,
-            onPressed: () => Navigator.pushNamed(
-              context,
+            onPressed: () => NavigationService.intentWithData(
               DetailPage.routeName,
-              arguments: BundleData(article.source, article),
+              BundleData(article.source, article),
             ),
           );
         },

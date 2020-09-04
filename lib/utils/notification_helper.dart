@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dicoding_news_app/common/bundle_data.dart';
+import 'package:dicoding_news_app/common/navigation_service.dart';
 import 'package:dicoding_news_app/data/model/articles.dart';
-import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -55,14 +55,14 @@ class NotificationHelper {
 
   // Fungsi untuk mengatasi proses klik pada notifikasi dan mengarahkannya
   // ke halaman tertentu dengan data atau tanpa data
-  static void configureSelectNotificationSubject(
-      BuildContext context, String route) {
-    selectNotificationSubject.stream.listen((String payload) async {
-      var data = ArticlesResult.fromJson(json.decode(payload));
-      var article = data.articles[0];
-      var source = data.articles[0].source;
-      await Navigator.pushNamed(context, route,
-          arguments: BundleData(source, article));
-    });
+  static void configureSelectNotificationSubject(String route) {
+    selectNotificationSubject.stream.listen(
+      (String payload) async {
+        var data = ArticlesResult.fromJson(json.decode(payload));
+        var article = data.articles[0];
+        var source = data.articles[0].source;
+        NavigationService.intentWithData(route, BundleData(source, article));
+      },
+    );
   }
 }
