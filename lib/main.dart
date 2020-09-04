@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         accentColor: secondaryColor,
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: myTextTheme,
         appBarTheme: AppBarTheme(
           textTheme: myTextTheme.apply(bodyColor: Colors.black),
           elevation: 0,
