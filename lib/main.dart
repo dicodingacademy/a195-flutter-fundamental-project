@@ -4,6 +4,7 @@ import 'package:dicoding_news_app/list_page.dart';
 import 'package:dicoding_news_app/styles.dart';
 import 'package:dicoding_news_app/widgets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,14 +17,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
-        primaryColor: Colors.white,
+        primaryColor: primaryColor,
+        accentColor: secondaryColor,
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: myTextTheme.apply(
-          displayColor: Colors.white54,
-        ),
         appBarTheme: AppBarTheme(
           textTheme: myTextTheme.apply(bodyColor: Colors.black),
+          elevation: 0,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: secondaryColor,
+          unselectedItemColor: Colors.grey,
         ),
         buttonTheme: ButtonThemeData(
           buttonColor: Colors.white70,

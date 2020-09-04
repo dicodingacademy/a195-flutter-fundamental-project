@@ -6,6 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewsListPage extends StatefulWidget {
+  static const routeName = '/article_list';
+
   @override
   _NewsListPageState createState() => _NewsListPageState();
 }
@@ -15,13 +17,15 @@ class _NewsListPageState extends State<NewsListPage> {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('News App'),
-        elevation: 0,
-      ),
-      body: bottomNavIndex == 0 ? ArticleList() : SettingsPage(),
+      body: bottomNavIndex == 0
+          ? Scaffold(
+              appBar: AppBar(
+                title: Text('News App'),
+              ),
+              body: ArticleList(),
+            )
+          : SettingsPage(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
         currentIndex: bottomNavIndex,
         items: [
           BottomNavigationBarItem(
