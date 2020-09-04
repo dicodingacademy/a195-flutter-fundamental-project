@@ -107,14 +107,8 @@ class ArticleList extends StatelessWidget {
           ),
           subtitle: Text(article.author),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ArticleDetailPage(
-                  article: article,
-                ),
-              ),
-            );
+            Navigator.pushNamed(context, ArticleDetailPage.routeName,
+                arguments: article);
           },
         ),
       );
