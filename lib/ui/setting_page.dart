@@ -1,8 +1,6 @@
-import 'dart:math';
-
-import 'package:android_alarm_manager/android_alarm_manager.dart';
-import 'package:dicoding_news_app/utils/background_service.dart';
+import 'package:dicoding_news_app/provider/scheduling_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingPage extends StatelessWidget {
   static const route = "/setting_page";
@@ -14,18 +12,37 @@ class SettingPage extends StatelessWidget {
         title: Text('Setting'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('Scheduled News'),
-          onPressed: () async {
-            print('Scheduled clicked');
-            await AndroidAlarmManager.oneShotAt(
-              DateTime.now().add(Duration(seconds: 5)),
-              Random().nextInt(pow(2, 31)),
-              BackgroundService.callback,
-              exact: true,
-              wakeup: true,
-            );
-          },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Scheduling News',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Deactivate',
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+                Consumer<SchedulingProvider>(
+                  builder: (context, scheduled, _) {
+                    return Switch(
+                      value: scheduled.isScheduled,
+                      onChanged: (value) async {
+                        scheduled.scheduledNews(value);
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'Activate',
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

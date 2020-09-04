@@ -2,6 +2,7 @@ import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
+import 'package:dicoding_news_app/provider/scheduling_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:dicoding_news_app/ui/setting_page.dart';
@@ -49,15 +50,17 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
         ),
       ),
-      // Ketika menggunakan properti `home`, pastikan tidak menggunakan properti
-      // `initialRoute`, begitupula sebaliknya
       home: ChangeNotifierProvider<NewsProvider>(
         create: (_) => NewsProvider(apiService: ApiService()),
         child: HomePage(title: title),
       ),
       routes: {
         DetailPage.routeName: (context) => DetailPage(),
-        SettingPage.route: (context) => SettingPage(),
+        SettingPage.route: (context) =>
+            ChangeNotifierProvider<SchedulingProvider>(
+              create: (_) => SchedulingProvider(),
+              child: SettingPage(),
+            ),
       },
     );
   }
