@@ -1,5 +1,5 @@
 import 'package:dicoding_news_app/common/bundle_data.dart';
-import 'package:dicoding_news_app/common/navigation_service.dart';
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/detail_page.dart';
 import 'package:dicoding_news_app/ui/setting_page.dart';
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              NavigationService.intent(SettingPage.route);
+              Navigation.intent(SettingPage.route);
             },
           ),
         ],
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
             image: article.urlToImage,
             title: article.title,
             desc: article.description,
-            onPressed: () => NavigationService.intentWithData(
+            onPressed: () => Navigation.intentWithData(
               DetailPage.routeName,
               BundleData(article.source, article),
             ),

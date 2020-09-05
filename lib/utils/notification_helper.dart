@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dicoding_news_app/common/bundle_data.dart';
-import 'package:dicoding_news_app/common/navigation_service.dart';
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/data/model/articles.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -61,7 +61,7 @@ class NotificationHelper {
         var data = ArticlesResult.fromJson(json.decode(payload));
         var article = data.articles[0];
         var source = data.articles[0].source;
-        NavigationService.intentWithData(route, BundleData(source, article));
+        Navigation.intentWithData(route, BundleData(source, article));
       },
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class NavigationService {
+class Navigation {
   static intent(String routeName) {
     navigatorKey.currentState.pushNamed(routeName);
   }
