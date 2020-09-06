@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
         accentColor: secondaryColor,
-        scaffoldBackgroundColor: primaryColor,
+        scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: myTextTheme,
         appBarTheme: AppBarTheme(
@@ -23,10 +23,13 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
         buttonTheme: ButtonThemeData(
-          buttonColor: Colors.white70,
+          buttonColor: secondaryColor,
           textTheme: ButtonTextTheme.primary,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+            borderRadius: BorderRadius.all(
+              Radius.circular(0),
+            ),
+          ),
         ),
       ),
       initialRoute: NewsListPage.routeName,
