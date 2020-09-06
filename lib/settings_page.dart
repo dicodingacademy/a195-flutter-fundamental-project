@@ -4,10 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
+  static const String settingsTitle = 'Settings';
+
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(settingsTitle),
       ),
       body: _buildList(context),
     );
@@ -16,7 +18,7 @@ class SettingsPage extends StatelessWidget {
   Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('Settings'),
+        middle: Text(settingsTitle),
       ),
       child: _buildList(context),
     );
@@ -31,24 +33,8 @@ class SettingsPage extends StatelessWidget {
             trailing: Switch.adaptive(
               value: false,
               onChanged: (value) {
-                defaultTargetPlatform == TargetPlatform.android
-                    ? showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('Coming Soon!'),
-                            content: Text('This feature will be coming soon!'),
-                            actions: [
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('Ok'),
-                              ),
-                            ],
-                          );
-                        })
-                    : showCupertinoDialog(
+                defaultTargetPlatform == TargetPlatform.iOS
+                    ? showCupertinoDialog(
                         context: context,
                         barrierDismissible: true,
                         builder: (context) {
@@ -65,19 +51,8 @@ class SettingsPage extends StatelessWidget {
                             ],
                           );
                         },
-                      );
-              },
-            ),
-          ),
-        ),
-        Material(
-          child: ListTile(
-            title: Text('Notification'),
-            trailing: Switch.adaptive(
-              value: false,
-              onChanged: (value) {
-                defaultTargetPlatform == TargetPlatform.android
-                    ? showDialog(
+                      )
+                    : showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
@@ -92,24 +67,8 @@ class SettingsPage extends StatelessWidget {
                               ),
                             ],
                           );
-                        })
-                    : showCupertinoDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) {
-                          return CupertinoAlertDialog(
-                            title: Text('Coming Soon!'),
-                            content: Text('This feature will be coming soon!'),
-                            actions: [
-                              CupertinoDialogAction(
-                                child: Text('Ok'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        });
+                        },
+                      );
               },
             ),
           ),

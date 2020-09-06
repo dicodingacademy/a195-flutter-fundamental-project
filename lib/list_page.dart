@@ -14,6 +14,7 @@ class NewsListPage extends StatefulWidget {
 
 class _NewsListPageState extends State<NewsListPage> {
   int bottomNavIndex = 0;
+  final String headlineText = 'Headline';
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
@@ -30,11 +31,11 @@ class _NewsListPageState extends State<NewsListPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.public),
-            title: Text('Headline'),
+            title: Text(headlineText),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            title: Text('Settings'),
+            title: Text(SettingsPage.settingsTitle),
           ),
         ],
         onTap: (selected) {
@@ -52,11 +53,11 @@ class _NewsListPageState extends State<NewsListPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.news),
-            title: Text('Headline'),
+            title: Text(headlineText),
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.settings),
-            title: Text('Settings'),
+            title: Text(SettingsPage.settingsTitle),
           ),
         ],
       ),
@@ -89,32 +90,32 @@ class _NewsListPageState extends State<NewsListPage> {
 }
 
 class ArticleList extends StatelessWidget {
+  Widget _buildArticleItem(BuildContext context, Article article) {
+    return Material(
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        leading: Hero(
+          tag: article.urlToImage,
+          child: Image.network(
+            article.urlToImage,
+            width: 100,
+          ),
+        ),
+        title: Text(
+          article.title,
+        ),
+        subtitle: Text(article.author),
+        onTap: () {
+          Navigator.pushNamed(context, ArticleDetailPage.routeName,
+              arguments: article);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget _buildArticleItem(BuildContext context, Article article) {
-      return Material(
-        child: ListTile(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          leading: Hero(
-            tag: article.urlToImage,
-            child: Image.network(
-              article.urlToImage,
-              width: 100,
-            ),
-          ),
-          title: Text(
-            article.title,
-          ),
-          subtitle: Text(article.author),
-          onTap: () {
-            Navigator.pushNamed(context, ArticleDetailPage.routeName,
-                arguments: article);
-          },
-        ),
-      );
-    }
-
     return FutureBuilder<String>(
       future: DefaultAssetBundle.of(context).loadString('assets/articles.json'),
       builder: (context, snapshot) {
