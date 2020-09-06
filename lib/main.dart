@@ -1,5 +1,5 @@
-import 'package:dicoding_news_app/article.dart';
 import 'package:dicoding_news_app/detail_page.dart';
+import 'package:dicoding_news_app/list_page.dart';
 import 'package:dicoding_news_app/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
-        primaryColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
+        primaryColor: primaryColor,
+        accentColor: secondaryColor,
+        scaffoldBackgroundColor: primaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: myTextTheme,
         appBarTheme: AppBarTheme(
           textTheme: myTextTheme.apply(bodyColor: Colors.black),
+          elevation: 0,
         ),
         buttonTheme: ButtonThemeData(
           buttonColor: Colors.white70,
@@ -36,57 +38,6 @@ class MyApp extends StatelessWidget {
         ArticleWebView.routeName: (context) => ArticleWebView(
               url: ModalRoute.of(context).settings.arguments,
             ),
-      },
-    );
-  }
-}
-
-class NewsListPage extends StatelessWidget {
-  static const routeName = '/article_list';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'News App',
-        ),
-        elevation: 0,
-      ),
-      body: FutureBuilder<String>(
-        future:
-            DefaultAssetBundle.of(context).loadString('assets/articles.json'),
-        builder: (context, snapshot) {
-          final List<Article> articles = parseArticles(snapshot.data);
-          return ListView.builder(
-            itemCount: articles.length,
-            itemBuilder: (context, index) {
-              return _buildArticleItem(context, articles[index]);
-            },
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildArticleItem(BuildContext context, Article article) {
-    return ListTile(
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      leading: Hero(
-        tag: article.urlToImage,
-        child: Image.network(
-          article.urlToImage,
-          width: 100,
-        ),
-      ),
-      title: Text(
-        article.title,
-      ),
-      subtitle: Text(article.author),
-      onTap: () {
-        Navigator.pushNamed(context, ArticleDetailPage.routeName,
-            arguments: article);
       },
     );
   }
