@@ -15,7 +15,9 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(),
+      navigationBar: CupertinoNavigationBar(
+        middle: Text('Settings'),
+      ),
       child: _buildList(context),
     );
   }
@@ -36,6 +38,14 @@ class SettingsPage extends StatelessWidget {
                           return AlertDialog(
                             title: Text('Coming Soon!'),
                             content: Text('This feature will be coming soon!'),
+                            actions: [
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Ok'),
+                              ),
+                            ],
                           );
                         })
                     : showCupertinoDialog(
@@ -45,8 +55,17 @@ class SettingsPage extends StatelessWidget {
                           return CupertinoAlertDialog(
                             title: Text('Coming Soon!'),
                             content: Text('This feature will be coming soon!'),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: Text('Ok'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
                           );
-                        });
+                        },
+                      );
               },
             ),
           ),
@@ -64,6 +83,14 @@ class SettingsPage extends StatelessWidget {
                           return AlertDialog(
                             title: Text('Coming Soon!'),
                             content: Text('This feature will be coming soon!'),
+                            actions: [
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Ok'),
+                              ),
+                            ],
                           );
                         })
                     : showCupertinoDialog(
@@ -73,6 +100,14 @@ class SettingsPage extends StatelessWidget {
                           return CupertinoAlertDialog(
                             title: Text('Coming Soon!'),
                             content: Text('This feature will be coming soon!'),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: Text('Ok'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
                           );
                         });
               },

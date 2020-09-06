@@ -66,6 +66,7 @@ class _NewsListPageState extends State<NewsListPage> {
             return CupertinoPageScaffold(
               navigationBar: CupertinoNavigationBar(
                 middle: Text('News App'),
+                transitionBetweenRoutes: false,
               ),
               child: ArticleList(),
             );
