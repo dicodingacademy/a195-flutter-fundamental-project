@@ -1,4 +1,3 @@
-import 'package:dicoding_news_app/article.dart';
 import 'package:dicoding_news_app/detail_page.dart';
 import 'package:dicoding_news_app/list_page.dart';
 import 'package:dicoding_news_app/styles.dart';
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: primaryColor,
         accentColor: secondaryColor,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: primaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: myTextTheme,
         appBarTheme: AppBarTheme(
