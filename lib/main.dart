@@ -1,6 +1,6 @@
-import 'package:dicoding_news_app/detail_page.dart';
-import 'package:dicoding_news_app/list_page.dart';
-import 'package:dicoding_news_app/styles.dart';
+import 'package:dicoding_news_app/ui/detail_page.dart';
+import 'package:dicoding_news_app/ui/list_page.dart';
+import 'package:dicoding_news_app/common/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

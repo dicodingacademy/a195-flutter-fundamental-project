@@ -1,4 +1,4 @@
-import 'package:dicoding_news_app/article.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
