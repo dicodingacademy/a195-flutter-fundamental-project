@@ -1,61 +1,87 @@
+import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
-import 'package:dicoding_news_app/ui/detail_page.dart';
-import 'package:dicoding_news_app/widget/card_article.dart';
+import 'package:dicoding_news_app/ui/article_list_page.dart';
+import 'package:dicoding_news_app/ui/settings_page.dart';
+import 'package:dicoding_news_app/widgets/platform_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
-  final String title;
-
-  const HomePage({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  static const routeName = '/home_page';
 
   @override
-  Widget build(BuildContext context) {
-    final state = Provider.of<NewsProvider>(context);
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _bottomNavIndex = 0;
+  final String _headlineText = 'Headline';
+
+  Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(title),
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: _buildBody(state),
+      body: _bottomNavIndex == 0
+          ? ChangeNotifierProvider<NewsProvider>(
+              create: (_) => NewsProvider(apiService: ApiService()),
+              child: ArticleListPage(),
+            )
+          : SettingsPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _bottomNavIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.public),
+            title: Text(_headlineText),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text(SettingsPage.settingsTitle),
+          ),
+        ],
+        onTap: (selected) {
+          setState(() {
+            _bottomNavIndex = selected;
+          });
+        },
       ),
     );
   }
 
-  Widget _buildBody(NewsProvider state) {
-    if (state.state == ResultState.Loading) {
-      return Center(child: CircularProgressIndicator());
-    } else if (state.state == ResultState.HasData) {
-      return ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.black,
-        ),
-        shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
-        itemCount: state.result.articles.length,
-        itemBuilder: (context, index) {
-          var article = state.result.articles[index];
-          return CardArticle(
-            image: article.urlToImage,
-            title: article.title,
-            desc: article.description,
-            onPressed: () => Navigator.pushNamed(
-              context,
-              DetailPage.routeName,
-              arguments: BundleData(article.source, article),
-            ),
-          );
-        },
-      );
-    } else if (state.state == ResultState.NoData) {
-      return Center(child: Text(state.message));
-    } else if (state.state == ResultState.Error) {
-      return Center(child: Text(state.message));
-    } else {
-      return Center(child: Text(''));
-    }
+  Widget _buildIos(BuildContext context) {
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.news),
+            title: Text(_headlineText),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.settings),
+            title: Text(SettingsPage.settingsTitle),
+          ),
+        ],
+      ),
+      tabBuilder: (context, index) {
+        switch (index) {
+          case 0:
+            return ChangeNotifierProvider<NewsProvider>(
+              create: (_) => NewsProvider(apiService: ApiService()),
+              child: ArticleListPage(),
+            );
+          case 1:
+            return SettingsPage();
+          default:
+            return null;
+        }
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
+    );
   }
 }

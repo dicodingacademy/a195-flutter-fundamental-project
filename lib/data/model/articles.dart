@@ -10,11 +10,11 @@ class ArticlesResult {
   List<Articles> articles;
 
   factory ArticlesResult.fromJson(Map<String, dynamic> json) => ArticlesResult(
-    status: json["status"],
-    totalResults: json["totalResults"],
-    articles: List<Articles>.from(
-        json["articles"].map((x) => Articles.fromJson(x))),
-  );
+        status: json["status"],
+        totalResults: json["totalResults"],
+        articles: List<Articles>.from(
+            json["articles"].map((x) => Articles.fromJson(x))),
+      );
 }
 
 class Articles {
@@ -35,19 +35,19 @@ class Articles {
   String description;
   String url;
   String urlToImage;
-  String publishedAt;
+  DateTime publishedAt;
   String content;
 
   factory Articles.fromJson(Map<String, dynamic> json) => Articles(
-    source: Source.fromJson(json["source"]),
-    author: json["author"],
-    title: json["title"],
-    description: json["description"],
-    url: json["url"],
-    urlToImage: json["urlToImage"],
-    publishedAt: json["publishedAt"],
-    content: json["content"] == null ? null : json["content"],
-  );
+        source: Source.fromJson(json["source"]),
+        author: json["author"] == null ? null : json["author"],
+        title: json["title"],
+        description: json["description"] == null ? null : json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"] == null ? null : json["urlToImage"],
+        publishedAt: DateTime.parse(json["publishedAt"]),
+        content: json["content"] == null ? null : json["content"],
+      );
 }
 
 class Source {
@@ -56,11 +56,11 @@ class Source {
     this.name,
   });
 
-  int id;
+  String id;
   String name;
 
   factory Source.fromJson(Map<String, dynamic> json) => Source(
-    id: json["id"],
-    name: json["name"],
-  );
+        id: json["id"] == null ? null : json["id"],
+        name: json["name"],
+      );
 }
