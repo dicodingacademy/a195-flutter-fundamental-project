@@ -7,6 +7,37 @@ class CustomScaffold extends StatelessWidget {
 
   CustomScaffold({this.body});
 
+  Widget _buildShortAppBar(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: defaultTargetPlatform == TargetPlatform.iOS
+                ? Icon(CupertinoIcons.back)
+                : Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Text(
+              'N',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+        ],
+      ),
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(16.0),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,35 +51,4 @@ class CustomScaffold extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _buildShortAppBar(BuildContext context) {
-  return Card(
-    margin: EdgeInsets.all(0),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        IconButton(
-          icon: defaultTargetPlatform == TargetPlatform.iOS
-              ? Icon(CupertinoIcons.back)
-              : Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 16.0),
-          child: Text(
-            'N',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-        ),
-      ],
-    ),
-    shape: BeveledRectangleBorder(
-      borderRadius: BorderRadius.only(
-        bottomRight: Radius.circular(16.0),
-      ),
-    ),
-  );
 }
