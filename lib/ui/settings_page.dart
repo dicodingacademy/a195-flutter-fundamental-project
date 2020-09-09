@@ -29,61 +29,65 @@ class SettingsPage extends StatelessWidget {
   Widget _buildList(BuildContext context) {
     return ListView(
       children: [
-        ListTile(
-          title: Text('Dark Theme'),
-          trailing: Switch.adaptive(
-            value: false,
-            onChanged: (value) {
-              defaultTargetPlatform == TargetPlatform.iOS
-                  ? showCupertinoDialog(
-                context: context,
-                barrierDismissible: true,
-                builder: (context) {
-                  return CupertinoAlertDialog(
-                    title: Text('Coming Soon!'),
-                    content: Text('This feature will be coming soon!'),
-                    actions: [
-                      CupertinoDialogAction(
-                        child: Text('Ok'),
-                        onPressed: () {
-                          Navigator.pop(context);
+        Material(
+          child: ListTile(
+            title: Text('Dark Theme'),
+            trailing: Switch.adaptive(
+              value: false,
+              onChanged: (value) {
+                defaultTargetPlatform == TargetPlatform.iOS
+                    ? showCupertinoDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        builder: (context) {
+                          return CupertinoAlertDialog(
+                            title: Text('Coming Soon!'),
+                            content: Text('This feature will be coming soon!'),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: Text('Ok'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
                         },
-                      ),
-                    ],
-                  );
-                },
-              )
-                  : showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text('Coming Soon!'),
-                    content: Text('This feature will be coming soon!'),
-                    actions: [
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pop(context);
+                      )
+                    : showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Coming Soon!'),
+                            content: Text('This feature will be coming soon!'),
+                            actions: [
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          );
                         },
-                        child: Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
+                      );
+              },
+            ),
           ),
         ),
-        ListTile(
-          title: Text('Scheduling News'),
-          trailing: Consumer<SchedulingProvider>(
-            builder: (context, scheduled, _) {
-              return Switch.adaptive(
-                value: scheduled.isScheduled,
-                onChanged: (value) async {
-                  scheduled.scheduledNews(value);
-                },
-              );
-            },
+        Material(
+          child: ListTile(
+            title: Text('Scheduling News'),
+            trailing: Consumer<SchedulingProvider>(
+              builder: (context, scheduled, _) {
+                return Switch.adaptive(
+                  value: scheduled.isScheduled,
+                  onChanged: (value) async {
+                    scheduled.scheduledNews(value);
+                  },
+                );
+              },
+            ),
           ),
         ),
       ],
