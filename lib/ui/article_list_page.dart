@@ -12,12 +12,8 @@ class ArticleListPage extends StatelessWidget {
     if (state.state == ResultState.Loading) {
       return Center(child: CircularProgressIndicator());
     } else if (state.state == ResultState.HasData) {
-      return ListView.separated(
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.black,
-        ),
+      return ListView.builder(
         shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
         itemCount: state.result.articles.length,
         itemBuilder: (context, index) {
           var article = state.result.articles[index];
