@@ -4,14 +4,14 @@ import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NewsListPage extends StatefulWidget {
-  static const routeName = '/article_list';
+class HomePage extends StatefulWidget {
+  static const routeName = '/home_page';
 
   @override
-  _NewsListPageState createState() => _NewsListPageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _NewsListPageState extends State<NewsListPage> {
+class _HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
   final String _headlineText = 'Headline';
 
