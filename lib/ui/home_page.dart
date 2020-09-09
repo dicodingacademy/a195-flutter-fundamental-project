@@ -1,81 +1,76 @@
-import 'package:dicoding_news_app/data/api/api_service.dart';
-import 'package:dicoding_news_app/data/model/articles.dart';
-import 'package:dicoding_news_app/ui/detail_page.dart';
-import 'package:dicoding_news_app/widget/card_article.dart';
+import 'package:dicoding_news_app/ui/article_list_page.dart';
+import 'package:dicoding_news_app/ui/settings_page.dart';
+import 'package:dicoding_news_app/widgets/platform_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  final String title;
-
-  const HomePage({Key key, this.title}) : super(key: key);
+  static const routeName = '/home_page';
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<ArticlesResult> _article;
+  int _bottomNavIndex = 0;
+  final String _headlineText = 'Headline';
 
-  @override
-  void initState() {
-    super.initState();
-    _article = ApiService().topHeadlines();
+  Widget _buildAndroid(BuildContext context) {
+    return Scaffold(
+      body: _bottomNavIndex == 0 ? ArticleListPage() : SettingsPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _bottomNavIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.public),
+            title: Text(_headlineText),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text(SettingsPage.settingsTitle),
+          ),
+        ],
+        onTap: (selected) {
+          setState(() {
+            _bottomNavIndex = selected;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget _buildIos(BuildContext context) {
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.news),
+            title: Text(_headlineText),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.settings),
+            title: Text(SettingsPage.settingsTitle),
+          ),
+        ],
+      ),
+      tabBuilder: (context, index) {
+        switch (index) {
+          case 0:
+            return ArticleListPage();
+          case 1:
+            return SettingsPage();
+          default:
+            return null;
+        }
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.title),
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: FutureBuilder(
-          future: _article,
-          builder: (context, AsyncSnapshot<ArticlesResult> snapshot) {
-            var state = snapshot.connectionState;
-            switch (state) {
-              case ConnectionState.none:
-              case ConnectionState.active:
-              case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator());
-              case ConnectionState.done:
-                if (snapshot.hasData) {
-                  return ListView.separated(
-                    separatorBuilder: (context, index) => Divider(
-                      color: Colors.black,
-                    ),
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemCount: snapshot.data.articles.length,
-                    itemBuilder: (context, index) {
-                      var article = snapshot.data.articles[index];
-                      return CardArticle(
-                        image: article.urlToImage,
-                        title: article.title,
-                        desc: article.description,
-                        onPressed: () => Navigator.pushNamed(
-                          context,
-                          DetailPage.routeName,
-                          arguments: BundleData(article.source, article),
-                        ),
-                      );
-                    },
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(child: Text(snapshot.error.toString()));
-                } else {
-                  return Text('');
-                }
-                break;
-              default:
-                return Text('');
-            }
-          },
-        ),
-      ),
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
     );
   }
 }
