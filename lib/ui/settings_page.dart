@@ -27,50 +27,48 @@ class SettingsPage extends StatelessWidget {
   Widget _buildList(BuildContext context) {
     return ListView(
       children: [
-        Material(
-          child: ListTile(
-            title: Text('Dark Theme'),
-            trailing: Switch.adaptive(
-              value: false,
-              onChanged: (value) {
-                defaultTargetPlatform == TargetPlatform.iOS
-                    ? showCupertinoDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) {
-                          return CupertinoAlertDialog(
-                            title: Text('Coming Soon!'),
-                            content: Text('This feature will be coming soon!'),
-                            actions: [
-                              CupertinoDialogAction(
-                                child: Text('Ok'),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      )
-                    : showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('Coming Soon!'),
-                            content: Text('This feature will be coming soon!'),
-                            actions: [
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-              },
-            ),
+        ListTile(
+          title: Text('Dark Theme'),
+          trailing: Switch.adaptive(
+            value: false,
+            onChanged: (value) {
+              defaultTargetPlatform == TargetPlatform.iOS
+                  ? showCupertinoDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (context) {
+                        return CupertinoAlertDialog(
+                          title: Text('Coming Soon!'),
+                          content: Text('This feature will be coming soon!'),
+                          actions: [
+                            CupertinoDialogAction(
+                              child: Text('Ok'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    )
+                  : showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Coming Soon!'),
+                          content: Text('This feature will be coming soon!'),
+                          actions: [
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+            },
           ),
         ),
       ],

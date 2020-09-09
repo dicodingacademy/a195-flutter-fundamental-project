@@ -13,28 +13,37 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
-  final String _headlineText = 'Headline';
+  static const String _headlineText = 'Headline';
+
+  List<Widget> _listWidget = [
+    ArticleListPage(),
+    SettingsPage(),
+  ];
+
+  List<BottomNavigationBarItem> _bottomNavBarItems = [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.public),
+      title: Text(_headlineText),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      title: Text(SettingsPage.settingsTitle),
+    ),
+  ];
+
+  void _onBottomNavTapped(int index) {
+    setState(() {
+      _bottomNavIndex = index;
+    });
+  }
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      body: _bottomNavIndex == 0 ? ArticleListPage() : SettingsPage(),
+      body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomNavIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.public),
-            title: Text(_headlineText),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text(SettingsPage.settingsTitle),
-          ),
-        ],
-        onTap: (selected) {
-          setState(() {
-            _bottomNavIndex = selected;
-          });
-        },
+        items: _bottomNavBarItems,
+        onTap: _onBottomNavTapped,
       ),
     );
   }
@@ -42,16 +51,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildIos(BuildContext context) {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.news),
-            title: Text(_headlineText),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.settings),
-            title: Text(SettingsPage.settingsTitle),
-          ),
-        ],
+        items: _bottomNavBarItems,
       ),
       tabBuilder: (context, index) {
         switch (index) {
