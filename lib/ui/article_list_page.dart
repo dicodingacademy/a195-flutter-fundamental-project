@@ -35,12 +35,8 @@ class _ArticleListPageState extends State<ArticleListPage> {
               return Center(child: CircularProgressIndicator());
             case ConnectionState.done:
               if (snapshot.hasData) {
-                return ListView.separated(
-                  separatorBuilder: (context, index) => Divider(
-                    color: Colors.black,
-                  ),
+                return ListView.builder(
                   shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
                   itemCount: snapshot.data.articles.length,
                   itemBuilder: (context, index) {
                     var article = snapshot.data.articles[index];
