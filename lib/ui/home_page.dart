@@ -50,9 +50,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
-        items: _bottomNavBarItems,
-      ),
+      tabBar: CupertinoTabBar(items: _bottomNavBarItems),
       tabBuilder: (context, index) {
         switch (index) {
           case 0:
