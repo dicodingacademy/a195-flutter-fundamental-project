@@ -9,8 +9,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static const title = 'News App';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
