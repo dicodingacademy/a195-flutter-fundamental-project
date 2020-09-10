@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
@@ -35,11 +37,11 @@ class _HomePageState extends State<HomePage> {
 
   List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.public),
+      icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
       title: Text(_headlineText),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
+      icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
       title: Text(SettingsPage.settingsTitle),
     ),
   ];
@@ -63,24 +65,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
-        items: _bottomNavBarItems,
-      ),
+      tabBar: CupertinoTabBar(items: _bottomNavBarItems),
       tabBuilder: (context, index) {
-        switch (index) {
-          case 0:
-            return ChangeNotifierProvider<NewsProvider>(
-              create: (_) => NewsProvider(apiService: ApiService()),
-              child: ArticleListPage(),
-            );
-          case 1:
-            return ChangeNotifierProvider<SchedulingProvider>(
-              create: (_) => SchedulingProvider(),
-              child: SettingsPage(),
-            );
-          default:
-            return null;
-        }
+        return _listWidget[index];
       },
     );
   }
