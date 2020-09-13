@@ -13,11 +13,8 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
-  // Jika terdapat sebuah fungsi yang akan dijalankan di dalam 'main', pastikan
-  // selalu tambahkan fungsi ini
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Melakukan inisiasi untuk melakukan proses background service dan notifikasi
   BackgroundService.initializeIsolate();
   await AndroidAlarmManager.initialize();
   await NotificationHelper.initNotifications(flutterLocalNotificationsPlugin);

@@ -75,8 +75,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Mendaftarkan event dari background isolate dan kemudian pesan akan selalu
-    // datang bertepatan dengan penekanan proses dari alarm.
     port.listen((_) async => await BackgroundService.someTask());
     NotificationHelper.configureSelectNotificationSubject(
         ArticleDetailPage.routeName);
