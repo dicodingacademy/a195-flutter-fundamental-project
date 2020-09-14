@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/common/navigation.dart';
-import 'package:dicoding_news_app/data/model/articles.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/subjects.dart';
 
