@@ -1,6 +1,6 @@
 import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
-import 'package:dicoding_news_app/data/model/articles.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/widgets/card_article.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
