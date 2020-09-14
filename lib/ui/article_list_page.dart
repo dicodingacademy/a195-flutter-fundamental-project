@@ -44,10 +44,7 @@ class ArticleListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('News App'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: _buildList(state),
-      ),
+      body: _buildList(state),
     );
   }
 
@@ -58,10 +55,7 @@ class ArticleListPage extends StatelessWidget {
         middle: Text('News App'),
         transitionBetweenRoutes: false,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: _buildList(state),
-      ),
+      child: _buildList(state),
     );
   }
 
