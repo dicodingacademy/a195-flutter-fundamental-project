@@ -21,6 +21,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+
   int _bottomNavIndex = 0;
   static const String _headlineText = 'Headline';
 
@@ -75,9 +78,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    port.listen((_) async => await BackgroundService.someTask());
-    NotificationHelper.configureSelectNotificationSubject(
-        ArticleDetailPage.routeName);
+    port.listen((_) async => await _service.someTask());
+    _notificationHelper
+        .configureSelectNotificationSubject(ArticleDetailPage.routeName);
   }
 
   @override

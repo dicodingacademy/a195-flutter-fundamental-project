@@ -9,7 +9,18 @@ import 'package:rxdart/subjects.dart';
 final selectNotificationSubject = BehaviorSubject<String>();
 
 class NotificationHelper {
-  static Future<void> initNotifications(
+  static NotificationHelper _notificationHelper;
+
+  NotificationHelper._createObject();
+
+  factory NotificationHelper() {
+    if (_notificationHelper == null) {
+      _notificationHelper = NotificationHelper._createObject();
+    }
+    return _notificationHelper;
+  }
+
+  Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
@@ -32,7 +43,7 @@ class NotificationHelper {
     });
   }
 
-  static Future<void> showNotification(
+  Future<void> showNotification(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
       ArticlesResult articles) async {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -51,7 +62,7 @@ class NotificationHelper {
         payload: json.encode(articles.toJson()));
   }
 
-  static void configureSelectNotificationSubject(String route) {
+  void configureSelectNotificationSubject(String route) {
     selectNotificationSubject.stream.listen(
       (String payload) async {
         var data = ArticlesResult.fromJson(json.decode(payload));
