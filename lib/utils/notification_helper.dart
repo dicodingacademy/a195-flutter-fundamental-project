@@ -9,16 +9,13 @@ import 'package:rxdart/subjects.dart';
 final selectNotificationSubject = BehaviorSubject<String>();
 
 class NotificationHelper {
-  static NotificationHelper _notificationHelper;
+  static NotificationHelper _instance;
 
-  NotificationHelper._createObject();
-
-  factory NotificationHelper() {
-    if (_notificationHelper == null) {
-      _notificationHelper = NotificationHelper._createObject();
-    }
-    return _notificationHelper;
+  NotificationHelper._internal() {
+    _instance = this;
   }
+
+  factory NotificationHelper() => _instance ?? NotificationHelper._internal();
 
   Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
