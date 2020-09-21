@@ -26,38 +26,32 @@ class _ArticleListPageState extends State<ArticleListPage> {
       future: _article,
       builder: (context, AsyncSnapshot<ArticlesResult> snapshot) {
         var state = snapshot.connectionState;
-        switch (state) {
-          case ConnectionState.none:
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-            return Center(child: CircularProgressIndicator());
-          case ConnectionState.done:
-            if (snapshot.hasData) {
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.data.articles.length,
-                itemBuilder: (context, index) {
-                  var article = snapshot.data.articles[index];
-                  return CardArticle(
-                    image: article.urlToImage,
-                    title: article.title,
-                    author: article.author,
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      ArticleDetailPage.routeName,
-                      arguments: BundleData(article.source, article),
-                    ),
-                  );
-                },
-              );
-            } else if (snapshot.hasError) {
-              return Center(child: Text(snapshot.error.toString()));
-            } else {
-              return Text('');
-            }
-            break;
-          default:
+        if (state != ConnectionState.done) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapshot.data.articles.length,
+              itemBuilder: (context, index) {
+                var article = snapshot.data.articles[index];
+                return CardArticle(
+                  image: article.urlToImage,
+                  title: article.title,
+                  author: article.author,
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    ArticleDetailPage.routeName,
+                    arguments: BundleData(article.source, article),
+                  ),
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          } else {
             return Text('');
+          }
         }
       },
     );
