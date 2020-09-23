@@ -43,19 +43,26 @@ class NotificationHelper {
   Future<void> showNotification(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
       ArticlesResult articles) async {
+    var _channelId = "1";
+    var _channelName = "channel_01";
+    var _channelDescription = "dicoding news channel";
+
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'your channel id', 'your channel name', 'your channel description',
-        importance: Importance.Max, priority: Priority.High, ticker: 'ticker');
+        _channelId, _channelName, _channelDescription,
+        importance: Importance.Max,
+        priority: Priority.High,
+        ticker: 'ticker',
+        styleInformation: DefaultStyleInformation(true, true));
 
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
 
-    var title = articles.articles[0].title;
-    var body = articles.articles[0].description;
+    var titleNotification = "<b>Breaking News</b>";
+    var titleNews = articles.articles[0].title;
 
     await flutterLocalNotificationsPlugin.show(
-        0, title, body, platformChannelSpecifics,
+        0, titleNotification, titleNews, platformChannelSpecifics,
         payload: json.encode(articles.toJson()));
   }
 
