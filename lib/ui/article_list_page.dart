@@ -1,5 +1,4 @@
 import 'package:dicoding_news_app/common/bundle_data.dart';
-import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/widgets/card_article.dart';
@@ -24,9 +23,10 @@ class ArticleListPage extends StatelessWidget {
                 image: article.urlToImage,
                 title: article.title,
                 author: article.author,
-                onPressed: () => Navigation.intentWithData(
+                onPressed: () => Navigator.pushNamed(
+                  context,
                   ArticleDetailPage.routeName,
-                  BundleData(article.source, article),
+                  arguments: BundleData(article.source, article),
                 ),
               );
             },

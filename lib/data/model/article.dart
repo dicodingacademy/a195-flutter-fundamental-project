@@ -15,12 +15,6 @@ class ArticlesResult {
         articles: List<Articles>.from(
             json["articles"].map((x) => Articles.fromJson(x))),
       );
-
-  Map<String, dynamic> toJson() => {
-        "status": status,
-        "totalResults": totalResults,
-        "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
-      };
 }
 
 class Articles {
@@ -54,17 +48,6 @@ class Articles {
         publishedAt: DateTime.parse(json["publishedAt"]),
         content: json["content"] == null ? null : json["content"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "source": source.toJson(),
-        "author": author == null ? null : author,
-        "title": title,
-        "description": description == null ? null : description,
-        "url": url,
-        "urlToImage": urlToImage == null ? null : urlToImage,
-        "publishedAt": publishedAt.toIso8601String(),
-        "content": content == null ? null : content,
-      };
 }
 
 class Source {
@@ -80,9 +63,4 @@ class Source {
         id: json["id"] == null ? null : json["id"],
         name: json["name"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "name": name,
-      };
 }
