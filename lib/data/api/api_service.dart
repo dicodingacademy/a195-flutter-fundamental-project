@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:dicoding_news_app/data/model/article.dart';
+import 'package:http/http.dart' as http;
 
 class ApiService {
   static final String _baseUrl = 'https://newsapi.org/v2/';
