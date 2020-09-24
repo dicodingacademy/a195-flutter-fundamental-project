@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/styles.dart';
 import 'package:flutter/material.dart';
 
 class CardArticle extends StatelessWidget {
@@ -17,6 +18,7 @@ class CardArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: primaryColor,
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
