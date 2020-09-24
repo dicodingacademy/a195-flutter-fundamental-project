@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
@@ -23,6 +24,7 @@ class ArticleListPage extends StatelessWidget {
 
   Widget _buildArticleItem(BuildContext context, Article article) {
     return Material(
+      color: primaryColor,
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
