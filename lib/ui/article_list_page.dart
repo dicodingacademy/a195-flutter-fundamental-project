@@ -8,54 +8,56 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ArticleListPage extends StatelessWidget {
-  Widget _buildList(NewsProvider state) {
-    if (state.state == ResultState.Loading) {
-      return Center(child: CircularProgressIndicator());
-    } else if (state.state == ResultState.HasData) {
-      return ListView.builder(
-        shrinkWrap: true,
-        itemCount: state.result.articles.length,
-        itemBuilder: (context, index) {
-          var article = state.result.articles[index];
-          return CardArticle(
-            image: article.urlToImage,
-            title: article.title,
-            author: article.author,
-            onPressed: () => Navigator.pushNamed(
-              context,
-              ArticleDetailPage.routeName,
-              arguments: BundleData(article.source, article),
-            ),
+  Widget _buildList() {
+    return Consumer<NewsProvider>(
+      builder: (context, state, _) {
+        if (state.state == ResultState.Loading) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state.state == ResultState.HasData) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: state.result.articles.length,
+            itemBuilder: (context, index) {
+              var article = state.result.articles[index];
+              return CardArticle(
+                image: article.urlToImage,
+                title: article.title,
+                author: article.author,
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  ArticleDetailPage.routeName,
+                  arguments: BundleData(article.source, article),
+                ),
+              );
+            },
           );
-        },
-      );
-    } else if (state.state == ResultState.NoData) {
-      return Center(child: Text(state.message));
-    } else if (state.state == ResultState.Error) {
-      return Center(child: Text(state.message));
-    } else {
-      return Center(child: Text(''));
-    }
+        } else if (state.state == ResultState.NoData) {
+          return Center(child: Text(state.message));
+        } else if (state.state == ResultState.Error) {
+          return Center(child: Text(state.message));
+        } else {
+          return Center(child: Text(''));
+        }
+      },
+    );
   }
 
   Widget _buildAndroid(BuildContext context) {
-    final state = Provider.of<NewsProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('News App'),
       ),
-      body: _buildList(state),
+      body: _buildList(),
     );
   }
 
   Widget _buildIos(BuildContext context) {
-    final state = Provider.of<NewsProvider>(context);
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text('News App'),
         transitionBetweenRoutes: false,
       ),
-      child: _buildList(state),
+      child: _buildList(),
     );
   }
 
