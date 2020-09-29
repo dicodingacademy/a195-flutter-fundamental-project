@@ -1,4 +1,3 @@
-import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
@@ -36,13 +35,11 @@ class _ArticleListPageState extends State<ArticleListPage> {
               itemBuilder: (context, index) {
                 var article = snapshot.data.articles[index];
                 return CardArticle(
-                  image: article.urlToImage,
-                  title: article.title,
-                  author: article.author,
+                  article: article,
                   onPressed: () => Navigator.pushNamed(
                     context,
                     ArticleDetailPage.routeName,
-                    arguments: BundleData(article.source, article),
+                    arguments: article,
                   ),
                 );
               },
