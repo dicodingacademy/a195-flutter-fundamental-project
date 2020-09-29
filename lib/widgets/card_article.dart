@@ -1,18 +1,12 @@
 import 'package:dicoding_news_app/common/styles.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:flutter/material.dart';
 
 class CardArticle extends StatelessWidget {
-  final String image;
-  final String title;
-  final String author;
+  final Article article;
   final Function onPressed;
 
-  const CardArticle(
-      {Key key,
-      @required this.image,
-      @required this.title,
-      @required this.author,
-      @required this.onPressed})
+  const CardArticle({Key key, @required this.article, @required this.onPressed})
       : super(key: key);
 
   @override
@@ -22,19 +16,19 @@ class CardArticle extends StatelessWidget {
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        leading: image == null
+        leading: article.urlToImage == null
             ? Container(width: 100, child: Icon(Icons.error))
             : Hero(
-                tag: image,
+                tag: article.urlToImage,
                 child: Image.network(
-                  image,
+                  article.urlToImage,
                   width: 100,
                 ),
               ),
         title: Text(
-          title ?? "",
+          article.title ?? "",
         ),
-        subtitle: Text(author ?? ""),
+        subtitle: Text(article.author ?? ""),
         onTap: onPressed,
       ),
     );

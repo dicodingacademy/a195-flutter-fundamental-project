@@ -1,4 +1,3 @@
-import 'package:dicoding_news_app/common/bundle_data.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/widgets/card_article.dart';
@@ -20,13 +19,11 @@ class ArticleListPage extends StatelessWidget {
             itemBuilder: (context, index) {
               var article = state.result.articles[index];
               return CardArticle(
-                image: article.urlToImage,
-                title: article.title,
-                author: article.author,
+                article: article,
                 onPressed: () => Navigator.pushNamed(
                   context,
                   ArticleDetailPage.routeName,
-                  arguments: BundleData(article.source, article),
+                  arguments: article,
                 ),
               );
             },
