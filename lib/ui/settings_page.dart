@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,7 +48,7 @@ class SettingsPage extends StatelessWidget {
                               CupertinoDialogAction(
                                 child: Text('Ok'),
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigation.back();
                                 },
                               ),
                             ],
@@ -63,7 +64,7 @@ class SettingsPage extends StatelessWidget {
                             actions: [
                               FlatButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  Navigation.back();
                                 },
                                 child: Text('Ok'),
                               ),

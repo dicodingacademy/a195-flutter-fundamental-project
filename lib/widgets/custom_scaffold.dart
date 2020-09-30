@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class CustomScaffold extends StatelessWidget {
                 ? Icon(CupertinoIcons.back)
                 : Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context);
+              Navigation.back();
             },
           ),
           Padding(
