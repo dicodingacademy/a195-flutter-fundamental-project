@@ -1,5 +1,6 @@
 import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dicoding_news_app/utils/background_service.dart';
+import 'package:dicoding_news_app/utils/date_time_helper.dart';
 import 'package:flutter/material.dart';
 
 class SchedulingProvider extends ChangeNotifier {
@@ -13,7 +14,7 @@ class SchedulingProvider extends ChangeNotifier {
       print('Scheduling News Activated');
       notifyListeners();
       return await AndroidAlarmManager.oneShotAt(
-        DateTime.now().add(Duration(seconds: 5)),
+        DateTimeHelper.format(),
         1,
         BackgroundService.callback,
         exact: true,
