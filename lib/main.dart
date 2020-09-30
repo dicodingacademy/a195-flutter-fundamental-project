@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/common/styles.dart';
@@ -19,7 +20,10 @@ Future<void> main() async {
   final BackgroundService _service = BackgroundService();
 
   _service.initializeIsolate();
-  await AndroidAlarmManager.initialize();
+
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
   await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
 
   runApp(MyApp());

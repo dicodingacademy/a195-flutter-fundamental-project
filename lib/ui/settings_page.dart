@@ -1,8 +1,8 @@
-import 'package:dicoding_news_app/common/navigation.dart';
+import 'dart:io';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
+import 'package:dicoding_news_app/widgets/custom_dialog.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,44 +35,7 @@ class SettingsPage extends StatelessWidget {
             title: Text('Dark Theme'),
             trailing: Switch.adaptive(
               value: false,
-              onChanged: (value) {
-                defaultTargetPlatform == TargetPlatform.iOS
-                    ? showCupertinoDialog(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (context) {
-                          return CupertinoAlertDialog(
-                            title: Text('Coming Soon!'),
-                            content: Text('This feature will be coming soon!'),
-                            actions: [
-                              CupertinoDialogAction(
-                                child: Text('Ok'),
-                                onPressed: () {
-                                  Navigation.back();
-                                },
-                              ),
-                            ],
-                          );
-                        },
-                      )
-                    : showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('Coming Soon!'),
-                            content: Text('This feature will be coming soon!'),
-                            actions: [
-                              FlatButton(
-                                onPressed: () {
-                                  Navigation.back();
-                                },
-                                child: Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-              },
+              onChanged: (value) => customDialog(context),
             ),
           ),
         ),
@@ -84,7 +47,11 @@ class SettingsPage extends StatelessWidget {
                 return Switch.adaptive(
                   value: scheduled.isScheduled,
                   onChanged: (value) async {
-                    scheduled.scheduledNews(value);
+                    if (Platform.isIOS) {
+                      customDialog(context);
+                    } else {
+                      scheduled.scheduledNews(value);
+                    }
                   },
                 );
               },
