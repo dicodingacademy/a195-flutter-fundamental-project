@@ -80,7 +80,7 @@ class DatabaseHelper {
 
     await db.delete(
       _tblBookMark,
-      where: 'id = ?',
+      where: 'url = ?',
       whereArgs: [url],
     );
   }

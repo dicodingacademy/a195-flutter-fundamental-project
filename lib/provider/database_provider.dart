@@ -18,7 +18,7 @@ class DatabaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addBookmarks(Article article) async {
+  void addBookmark(Article article) async {
     await databaseHelper.insertBookmark(article);
     _getBookmarks();
   }

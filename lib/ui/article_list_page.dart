@@ -19,11 +19,7 @@ class ArticleListPage extends StatelessWidget {
             itemCount: state.result.articles.length,
             itemBuilder: (context, index) {
               var article = state.result.articles[index];
-              return CardArticle(
-                article: article,
-                onPressed: () => Navigation.intentWithData(
-                    ArticleDetailPage.routeName, article),
-              );
+              return CardArticle(article: article);
             },
           );
         } else if (state.state == ResultState.NoData) {
