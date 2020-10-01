@@ -33,7 +33,7 @@ dependencies:
   http: ^0.12.2
   provider: ^4.3.2+1
   intl: ^0.16.1
-  android_alarm_manager: ^0.4.5+11
+  android_alarm_manager: ^0.4.5+14
   flutter_local_notifications: ^1.4.4+4
   rxdart: ^0.23.1
 

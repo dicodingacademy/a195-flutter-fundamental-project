@@ -13,10 +13,11 @@ class SchedulingProvider extends ChangeNotifier {
     if (_isScheduled) {
       print('Scheduling News Activated');
       notifyListeners();
-      return await AndroidAlarmManager.oneShotAt(
-        DateTimeHelper.format(),
+      return await AndroidAlarmManager.periodic(
+        Duration(hours: 24),
         1,
         BackgroundService.callback,
+        startAt: DateTimeHelper.format(),
         exact: true,
         wakeup: true,
       );
