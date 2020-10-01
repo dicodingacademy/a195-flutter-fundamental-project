@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/data/model/article.dart';
+import 'package:dicoding_news_app/utils/result_state.dart';
 import 'package:flutter/material.dart';
-
-enum ResultState { Loading, NoData, HasData, Error }
 
 class NewsProvider extends ChangeNotifier {
   final ApiService apiService;

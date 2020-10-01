@@ -1,4 +1,5 @@
 import 'package:dicoding_news_app/provider/database_provider.dart';
+import 'package:dicoding_news_app/utils/result_state.dart';
 import 'package:dicoding_news_app/widgets/card_article.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,12 +30,18 @@ class BookmarksPage extends StatelessWidget {
   Widget _buildList() {
     return Consumer<DatabaseProvider>(
       builder: (context, provider, child) {
-        return ListView.builder(
-          itemCount: provider.bookmarks.length,
-          itemBuilder: (context, index) {
-            return CardArticle(article: provider.bookmarks[index]);
-          },
-        );
+        if (provider.state == ResultState.HasData) {
+          return ListView.builder(
+            itemCount: provider.bookmarks.length,
+            itemBuilder: (context, index) {
+              return CardArticle(article: provider.bookmarks[index]);
+            },
+          );
+        } else {
+          return Center(
+            child: Text(provider.message),
+          );
+        }
       },
     );
   }
