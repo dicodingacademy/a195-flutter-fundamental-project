@@ -13,7 +13,7 @@ class BookmarksPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(bookmarksTitle),
       ),
-      body: _buildList(context),
+      body: _buildList(),
     );
   }
 
@@ -22,11 +22,11 @@ class BookmarksPage extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: Text(bookmarksTitle),
       ),
-      child: _buildList(context),
+      child: _buildList(),
     );
   }
 
-  Widget _buildList(BuildContext context) {
+  Widget _buildList() {
     return Consumer<DatabaseProvider>(
       builder: (context, provider, child) {
         return ListView.builder(
