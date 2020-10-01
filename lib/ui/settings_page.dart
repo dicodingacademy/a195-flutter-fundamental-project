@@ -1,5 +1,6 @@
 import 'package:dicoding_news_app/provider/preferences_provider.dart';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
+import 'package:dicoding_news_app/widgets/custom_dialog.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,11 @@ class SettingsPage extends StatelessWidget {
                 return Switch.adaptive(
                   value: scheduled.isScheduled,
                   onChanged: (value) async {
-                    scheduled.scheduledNews(value);
+                    if (Platform.isIOS) {
+                      customDialog(context);
+                    } else {
+                      scheduled.scheduledNews(value);
+                    }
                   },
                 );
               },
