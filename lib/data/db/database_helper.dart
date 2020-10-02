@@ -15,14 +15,14 @@ class DatabaseHelper {
     return _databaseHelper;
   }
 
-  static const String _tblBookMark = 'bookmarks';
+  static const String _tblBookmark = 'bookmarks';
 
   Future<Database> _initializeDb() async {
     var path = await getDatabasesPath();
     var db = openDatabase(
       '$path/newsapp.db',
       onCreate: (db, version) async {
-        await db.execute('''CREATE TABLE $_tblBookMark (
+        await db.execute('''CREATE TABLE $_tblBookmark (
              url TEXT PRIMARY KEY,
              author TEXT,
              title TEXT,
@@ -49,12 +49,12 @@ class DatabaseHelper {
 
   Future<void> insertBookmark(Article article) async {
     final db = await database;
-    await db.insert(_tblBookMark, article.toJson());
+    await db.insert(_tblBookmark, article.toJson());
   }
 
   Future<List<Article>> getBookmarks() async {
     final db = await database;
-    List<Map<String, dynamic>> results = await db.query(_tblBookMark);
+    List<Map<String, dynamic>> results = await db.query(_tblBookmark);
 
     return results.map((res) => Article.fromJson(res)).toList();
   }
@@ -63,7 +63,7 @@ class DatabaseHelper {
     final db = await database;
 
     List<Map<String, dynamic>> results = await db.query(
-      _tblBookMark,
+      _tblBookmark,
       where: 'url = ?',
       whereArgs: [url],
     );
@@ -79,7 +79,7 @@ class DatabaseHelper {
     final db = await database;
 
     await db.delete(
-      _tblBookMark,
+      _tblBookmark,
       where: 'url = ?',
       whereArgs: [url],
     );
