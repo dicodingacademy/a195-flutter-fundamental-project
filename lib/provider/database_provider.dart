@@ -34,8 +34,6 @@ class DatabaseProvider extends ChangeNotifier {
     try {
       await databaseHelper.insertBookmark(article);
       _getBookmarks();
-      _state = ResultState.HasData;
-      notifyListeners();
     } catch (e) {
       _state = ResultState.Error;
       _message = 'Error: $e';
@@ -52,8 +50,6 @@ class DatabaseProvider extends ChangeNotifier {
     try {
       await databaseHelper.removeBookmark(url);
       _getBookmarks();
-      _state = ResultState.HasData;
-      notifyListeners();
     } catch (e) {
       _state = ResultState.Error;
       _message = 'Error: $e';
