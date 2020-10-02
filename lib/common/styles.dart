@@ -58,4 +58,10 @@ ThemeData lightTheme = ThemeData(
   ),
 );
 
-ThemeData darkTheme = ThemeData.dark();
+ThemeData darkTheme = ThemeData.dark().copyWith(
+  textTheme: myTextTheme,
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: Color(0xff64ffda),
+    unselectedItemColor: Colors.grey,
+  ),
+);
