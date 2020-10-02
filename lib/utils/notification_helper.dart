@@ -56,7 +56,7 @@ class NotificationHelper {
     var platformChannelSpecifics = NotificationDetails(
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
 
-    var titleNotification = "<b>Breaking News</b>";
+    var titleNotification = "<b>Headline News</b>";
     var titleNews = articles.articles[0].title;
 
     await flutterLocalNotificationsPlugin.show(

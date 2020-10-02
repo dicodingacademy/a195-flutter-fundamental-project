@@ -6,7 +6,7 @@ class DateTimeHelper {
     final now = DateTime.now();
     final dateFormat = DateFormat('y/M/d');
     final timeSpecific = "08:00:00";
-    final completeFormat = DateFormat('y/M/d h:m:s');
+    final completeFormat = DateFormat('y/M/d H:m:s');
 
     // Today Format
     final todayDate = dateFormat.format(now);
@@ -19,12 +19,6 @@ class DateTimeHelper {
     final tomorrowDateAndTime = "$tomorrowDate $timeSpecific";
     var resultTomorrow = completeFormat.parseStrict(tomorrowDateAndTime);
 
-    if (now.millisecondsSinceEpoch > resultToday.millisecondsSinceEpoch) {
-      print('Tomorrow --> $resultTomorrow');
-      return resultTomorrow;
-    } else {
-      print('Today --> $resultToday');
-      return resultToday;
-    }
+    return now.isAfter(resultToday) ? resultTomorrow : resultToday;
   }
 }
