@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 final Color primaryColor = Color(0xFFFFFFFF);
 final Color secondaryColor = Color(0xFF6B38FB);
+final Color darkPrimaryColor = Color(0xFF000000);
+final Color darkSecondaryColor = Color(0xff64ffda);
 
 final TextTheme myTextTheme = TextTheme(
   headline1: GoogleFonts.merriweather(
@@ -59,9 +61,25 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
+  primaryColor: darkPrimaryColor,
+  accentColor: darkSecondaryColor,
+  visualDensity: VisualDensity.adaptivePlatformDensity,
   textTheme: myTextTheme,
+  appBarTheme: AppBarTheme(
+    textTheme: myTextTheme.apply(bodyColor: Colors.white),
+    elevation: 0,
+  ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    selectedItemColor: Color(0xff64ffda),
+    selectedItemColor: darkSecondaryColor,
     unselectedItemColor: Colors.grey,
+  ),
+  buttonTheme: ButtonThemeData(
+    buttonColor: darkSecondaryColor,
+    textTheme: ButtonTextTheme.primary,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(0),
+      ),
+    ),
   ),
 );
