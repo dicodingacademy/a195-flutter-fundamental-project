@@ -13,6 +13,7 @@ import 'package:dicoding_news_app/ui/article_web_view.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:dicoding_news_app/utils/background_service.dart';
 import 'package:dicoding_news_app/utils/notification_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
@@ -62,6 +63,17 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'News App',
             theme: provider.themeData,
+            builder: (context, child) {
+              return CupertinoTheme(
+                data: CupertinoThemeData(
+                  brightness:
+                      provider.isDarkTheme ? Brightness.dark : Brightness.light,
+                ),
+                child: Material(
+                  child: child,
+                ),
+              );
+            },
             navigatorKey: navigatorKey,
             initialRoute: HomePage.routeName,
             routes: {
