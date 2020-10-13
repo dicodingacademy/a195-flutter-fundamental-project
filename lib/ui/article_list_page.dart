@@ -1,6 +1,5 @@
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/data/model/article.dart';
-import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/widgets/card_article.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,14 +33,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
               itemCount: snapshot.data.articles.length,
               itemBuilder: (context, index) {
                 var article = snapshot.data.articles[index];
-                return CardArticle(
-                  article: article,
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    ArticleDetailPage.routeName,
-                    arguments: article,
-                  ),
-                );
+                return CardArticle(article: article);
               },
             );
           } else if (snapshot.hasError) {
