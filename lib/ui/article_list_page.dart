@@ -1,6 +1,4 @@
-import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
-import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/widgets/card_article.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,11 +17,7 @@ class ArticleListPage extends StatelessWidget {
             itemCount: state.result.articles.length,
             itemBuilder: (context, index) {
               var article = state.result.articles[index];
-              return CardArticle(
-                article: article,
-                onPressed: () => Navigation.intentWithData(
-                    ArticleDetailPage.routeName, article),
-              );
+              return CardArticle(article: article);
             },
           );
         } else if (state.state == ResultState.NoData) {

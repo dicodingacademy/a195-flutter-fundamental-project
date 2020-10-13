@@ -1,13 +1,13 @@
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/model/article.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class CardArticle extends StatelessWidget {
   final Article article;
-  final Function onPressed;
 
-  const CardArticle({Key key, @required this.article, @required this.onPressed})
-      : super(key: key);
+  const CardArticle({Key key, @required this.article}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CardArticle extends StatelessWidget {
           article.title ?? "",
         ),
         subtitle: Text(article.author ?? ""),
-        onTap: onPressed,
+        onTap: Navigation.intentWithData(ArticleDetailPage.routeName, article),
       ),
     );
   }
