@@ -29,7 +29,8 @@ class CardArticle extends StatelessWidget {
           article.title ?? "",
         ),
         subtitle: Text(article.author ?? ""),
-        onTap: Navigation.intentWithData(ArticleDetailPage.routeName, article),
+        onTap: () =>
+            Navigation.intentWithData(ArticleDetailPage.routeName, article),
       ),
     );
   }
