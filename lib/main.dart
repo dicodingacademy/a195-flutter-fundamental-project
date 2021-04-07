@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
       routes: {
         NewsListPage.routeName: (context) => NewsListPage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-              article: ModalRoute.of(context)!.settings.arguments as Article,
+              article: ModalRoute.of(context)?.settings.arguments as Article,
             ),
         ArticleWebView.routeName: (context) => ArticleWebView(
-              url: ModalRoute.of(context)!.settings.arguments as String,
+              url: ModalRoute.of(context)?.settings.arguments as String,
             ),
       },
     );
