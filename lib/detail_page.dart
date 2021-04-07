@@ -44,7 +44,7 @@ class ArticleDetailPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 10),
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text('Read more'),
                     onPressed: () {
                       Navigator.pushNamed(context, ArticleWebView.routeName,
