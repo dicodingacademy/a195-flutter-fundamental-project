@@ -31,7 +31,7 @@ dependencies:
   webview_flutter: ^2.0.3
   google_fonts: ^2.0.0
   http: ^0.13.3
-  provider: ^4.3.2+1
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

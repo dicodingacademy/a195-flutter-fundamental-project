@@ -9,13 +9,13 @@ enum ResultState { Loading, NoData, HasData, Error }
 class NewsProvider extends ChangeNotifier {
   final ApiService apiService;
 
-  NewsProvider({@required this.apiService}) {
+  NewsProvider({required this.apiService}) {
     _fetchAllArticle();
   }
 
-  ArticlesResult _articlesResult;
+  late ArticlesResult _articlesResult;
+  late ResultState _state;
   String _message = '';
-  ResultState _state;
 
   String get message => _message;
 
