@@ -7,7 +7,7 @@ class ArticleDetailPage extends StatelessWidget {
 
   final Article article;
 
-  const ArticleDetailPage({@required this.article});
+  const ArticleDetailPage({required this.article});
 
   @override
   Widget build(BuildContext context) {
