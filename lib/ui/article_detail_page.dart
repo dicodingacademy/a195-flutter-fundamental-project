@@ -24,8 +24,8 @@ class ArticleDetailPage extends StatelessWidget {
                     child: Icon(Icons.error),
                   )
                 : Hero(
-                    tag: article.urlToImage,
-                    child: Image.network(article.urlToImage),
+                    tag: article.urlToImage!,
+                    child: Image.network(article.urlToImage!),
                   ),
             Padding(
               padding: EdgeInsets.all(10),
@@ -33,12 +33,12 @@ class ArticleDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    article.description ?? "",
+                    article.description,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Divider(color: Colors.grey),
                   Text(
-                    article.title ?? "",
+                    article.title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Divider(color: Colors.grey),

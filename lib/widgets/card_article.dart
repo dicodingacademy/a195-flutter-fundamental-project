@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class CardArticle extends StatelessWidget {
   final Article article;
 
-  const CardArticle({Key key, @required this.article}) : super(key: key);
+  const CardArticle({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +18,16 @@ class CardArticle extends StatelessWidget {
         leading: article.urlToImage == null
             ? Container(width: 100, child: Icon(Icons.error))
             : Hero(
-                tag: article.urlToImage,
+                tag: article.urlToImage!,
                 child: Image.network(
-                  article.urlToImage,
+                  article.urlToImage!,
                   width: 100,
                 ),
               ),
         title: Text(
-          article.title ?? "",
+          article.title,
         ),
-        subtitle: Text(article.author ?? ""),
+        subtitle: Text(article.author ?? ''),
         onTap: () => Navigator.pushNamed(
           context,
           ArticleDetailPage.routeName,
