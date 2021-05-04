@@ -23,12 +23,13 @@ class MyApp extends StatelessWidget {
           textTheme: myTextTheme.apply(bodyColor: Colors.black),
           elevation: 0,
         ),
-        buttonTheme: ButtonThemeData(
-          buttonColor: secondaryColor,
-          textTheme: ButtonTextTheme.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(0),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: secondaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(0),
+              ),
             ),
           ),
         ),
