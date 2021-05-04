@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
   List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
-      title: Text(_headlineText),
+      label: _headlineText,
     ),
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
-      title: Text(SettingsPage.settingsTitle),
+      label: SettingsPage.settingsTitle,
     ),
   ];
 
