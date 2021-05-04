@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 class Article {
-  String author;
-  String title;
-  String description;
-  String url;
-  String urlToImage;
-  String publishedAt;
-  String content;
+  late String author;
+  late String title;
+  late String description;
+  late String url;
+  late String urlToImage;
+  late String publishedAt;
+  late String content;
 
   Article({
-    this.author,
-    this.title,
-    this.description,
-    this.url,
-    this.urlToImage,
-    this.publishedAt,
-    this.content,
+    required this.author,
+    required this.title,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+    required this.publishedAt,
+    required this.content,
   });
 
   Article.fromJson(Map<String, dynamic> article) {
@@ -30,7 +30,7 @@ class Article {
   }
 }
 
-List<Article> parseArticles(String json) {
+List<Article> parseArticles(String? json) {
   if (json == null) {
     return [];
   }
