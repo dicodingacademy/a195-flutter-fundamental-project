@@ -1,4 +1,5 @@
 import 'package:dicoding_news_app/common/styles.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/ui/article_web_view.dart';
 import 'package:dicoding_news_app/ui/home_page.dart';
@@ -27,12 +28,14 @@ class MyApp extends StatelessWidget {
           selectedItemColor: secondaryColor,
           unselectedItemColor: Colors.grey,
         ),
-        buttonTheme: ButtonThemeData(
-          buttonColor: secondaryColor,
-          textTheme: ButtonTextTheme.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(0),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: secondaryColor,
+            textStyle: TextStyle(),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(0),
+              ),
             ),
           ),
         ),
@@ -41,10 +44,10 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (context) => HomePage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-              article: ModalRoute.of(context).settings.arguments,
+              article: ModalRoute.of(context)?.settings.arguments as Article,
             ),
         ArticleWebView.routeName: (context) => ArticleWebView(
-              url: ModalRoute.of(context).settings.arguments,
+              url: ModalRoute.of(context)?.settings.arguments as String,
             ),
       },
     );

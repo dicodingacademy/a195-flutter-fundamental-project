@@ -7,7 +7,7 @@ class ArticleDetailPage extends StatelessWidget {
 
   final Article article;
 
-  const ArticleDetailPage({@required this.article});
+  const ArticleDetailPage({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class ArticleDetailPage extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(height: 10),
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text('Read more'),
                     onPressed: () {
                       Navigator.pushNamed(context, ArticleWebView.routeName,
