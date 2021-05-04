@@ -11,7 +11,7 @@ class ArticleListPage extends StatefulWidget {
 }
 
 class _ArticleListPageState extends State<ArticleListPage> {
-  Future<ArticlesResult> _article;
+  late Future<ArticlesResult> _article;
 
   @override
   void initState() {
@@ -30,10 +30,10 @@ class _ArticleListPageState extends State<ArticleListPage> {
           if (snapshot.hasData) {
             return ListView.builder(
               shrinkWrap: true,
-              itemCount: snapshot.data.articles.length,
+              itemCount: snapshot.data?.articles.length,
               itemBuilder: (context, index) {
-                var article = snapshot.data.articles[index];
-                return CardArticle(article: article);
+                var article = snapshot.data?.articles[index];
+                return CardArticle(article: article!);
               },
             );
           } else if (snapshot.hasError) {
