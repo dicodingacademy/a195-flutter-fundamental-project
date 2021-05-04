@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (context) => HomePage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
-              article: ModalRoute.of(context).settings.arguments,
+              article: ModalRoute.of(context)?.settings.arguments as Article,
             ),
         ArticleWebView.routeName: (context) => ArticleWebView(
-              url: ModalRoute.of(context).settings.arguments,
+              url: ModalRoute.of(context)?.settings.arguments as String,
             ),
       },
     );
