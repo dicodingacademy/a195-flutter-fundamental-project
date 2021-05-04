@@ -29,12 +29,13 @@ class MyApp extends StatelessWidget {
           selectedItemColor: secondaryColor,
           unselectedItemColor: Colors.grey,
         ),
-        buttonTheme: ButtonThemeData(
-          buttonColor: secondaryColor,
-          textTheme: ButtonTextTheme.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(0),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: secondaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(0),
+              ),
             ),
           ),
         ),
