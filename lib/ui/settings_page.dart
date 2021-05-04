@@ -59,7 +59,7 @@ class SettingsPage extends StatelessWidget {
                             title: Text('Coming Soon!'),
                             content: Text('This feature will be coming soon!'),
                             actions: [
-                              FlatButton(
+                              TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
