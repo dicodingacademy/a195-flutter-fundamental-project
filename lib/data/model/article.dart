@@ -15,9 +15,10 @@ class ArticlesResult {
         articles: List<Article>.from((json["articles"] as List)
             .map((x) => Article.fromJson(x))
             .where((article) =>
-                article.author != null ||
-                article.urlToImage != null ||
-                article.publishedAt != null ||
+                article.author != null &&
+                article.description != null &&
+                article.urlToImage != null &&
+                article.publishedAt != null &&
                 article.content != null)),
       );
 
@@ -31,7 +32,7 @@ class ArticlesResult {
 class Article {
   String? author;
   String title;
-  String description;
+  String? description;
   String url;
   String? urlToImage;
   DateTime? publishedAt;
