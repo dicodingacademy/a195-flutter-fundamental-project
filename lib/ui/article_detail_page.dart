@@ -33,7 +33,7 @@ class ArticleDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    article.description,
+                    article.description ?? "-",
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Divider(color: Colors.grey),
@@ -53,7 +53,7 @@ class ArticleDetailPage extends StatelessWidget {
                   ),
                   Divider(color: Colors.grey),
                   Text(
-                    article.content ?? "",
+                    article.content ?? "-",
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(height: 10),
