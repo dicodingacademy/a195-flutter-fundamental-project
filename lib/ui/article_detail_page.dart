@@ -8,7 +8,7 @@ class ArticleDetailPage extends StatelessWidget {
 
   final Article article;
 
-  const ArticleDetailPage({@required this.article});
+  const ArticleDetailPage({required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class ArticleDetailPage extends StatelessWidget {
                     child: Icon(Icons.error),
                   )
                 : Hero(
-                    tag: article.urlToImage,
-                    child: Image.network(article.urlToImage),
+                    tag: article.urlToImage!,
+                    child: Image.network(article.urlToImage!),
                   ),
             Padding(
               padding: EdgeInsets.all(10),
@@ -34,12 +34,12 @@ class ArticleDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    article.description ?? "",
+                    article.description,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Divider(color: Colors.grey),
                   Text(
-                    article.title ?? "",
+                    article.title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   Divider(color: Colors.grey),
@@ -58,7 +58,7 @@ class ArticleDetailPage extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   SizedBox(height: 10),
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text('Read more'),
                     onPressed: () {
                       Navigation.intentWithData(
