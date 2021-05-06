@@ -7,9 +7,9 @@ import 'package:dicoding_news_app/utils/notification_helper.dart';
 final ReceivePort port = ReceivePort();
 
 class BackgroundService {
-  static BackgroundService _instance;
+  static BackgroundService? _instance;
   static String _isolateName = 'isolate';
-  static SendPort _uiSendPort;
+  static SendPort? _uiSendPort;
 
   BackgroundService._internal() {
     _instance = this;

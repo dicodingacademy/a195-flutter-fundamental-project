@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class CardArticle extends StatelessWidget {
   final Article article;
 
-  const CardArticle({Key key, @required this.article}) : super(key: key);
+  const CardArticle({required this.article});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,6 @@ import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/ui/article_list_page.dart';
 import 'package:dicoding_news_app/ui/bookmarks_page.dart';
 import 'package:dicoding_news_app/ui/settings_page.dart';
-import 'package:dicoding_news_app/utils/background_service.dart';
 import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   static const String _headlineText = 'Headline';
 
   final NotificationHelper _notificationHelper = NotificationHelper();
-  final BackgroundService _service = BackgroundService();
 
   List<Widget> _listWidget = [
     ArticleListPage(),
@@ -33,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   List<BottomNavigationBarItem> _bottomNavBarItems = [
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.news : Icons.public),
-      title: Text(_headlineText),
+      label: _headlineText,
     ),
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS
@@ -43,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     ),
     BottomNavigationBarItem(
       icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
-      title: Text(SettingsPage.settingsTitle),
+      label: SettingsPage.settingsTitle,
     ),
   ];
 
@@ -76,7 +74,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    port.listen((_) async => await _service.someTask());
     _notificationHelper
         .configureSelectNotificationSubject(ArticleDetailPage.routeName);
   }
