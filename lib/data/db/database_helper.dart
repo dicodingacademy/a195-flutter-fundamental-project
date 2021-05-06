@@ -2,14 +2,14 @@ import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static DatabaseHelper _databaseHelper = DatabaseHelper._internal();
+  static DatabaseHelper? _instance;
   static Database? _database;
 
-  factory DatabaseHelper() {
-    return _databaseHelper;
+  DatabaseHelper._internal() {
+    _instance = this;
   }
 
-  DatabaseHelper._internal();
+  factory DatabaseHelper() => _instance ?? DatabaseHelper._internal();
 
   static const String _tblBookmark = 'bookmarks';
 
