@@ -25,7 +25,6 @@ class _HomePageState extends State<HomePage> {
   static const String _headlineText = 'Headline';
 
   final NotificationHelper _notificationHelper = NotificationHelper();
-  final BackgroundService _service = BackgroundService();
 
   List<Widget> _listWidget = [
     ChangeNotifierProvider<NewsProvider>(
@@ -78,7 +77,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    port.listen((_) async => await _service.someTask());
     _notificationHelper
         .configureSelectNotificationSubject(ArticleDetailPage.routeName);
   }

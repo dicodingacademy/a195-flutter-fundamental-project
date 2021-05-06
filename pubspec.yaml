@@ -32,10 +32,10 @@ dependencies:
   google_fonts: ^2.0.0
   http: ^0.13.3
   provider: ^5.0.0
-  intl: ^0.16.1
-  android_alarm_manager: ^0.4.5+14
-  flutter_local_notifications: ^1.4.4+4
-  rxdart: ^0.23.1
+  intl: ^0.17.0
+  android_alarm_manager: ^2.0.0
+  flutter_local_notifications: ^5.0.0+3
+  rxdart: ^0.26.0
 
 dev_dependencies:
   flutter_test:
