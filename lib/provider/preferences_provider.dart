@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class PreferencesProvider extends ChangeNotifier {
   PreferencesHelper preferencesHelper;
 
-  PreferencesProvider({@required this.preferencesHelper}) {
+  PreferencesProvider({required this.preferencesHelper}) {
     _getTheme();
     _getDailyNewsPreferences();
   }

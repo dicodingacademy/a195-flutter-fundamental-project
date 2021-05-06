@@ -25,23 +25,25 @@ class CardArticle extends StatelessWidget {
                 leading: article.urlToImage == null
                     ? Container(width: 100, child: Icon(Icons.error))
                     : Hero(
-                        tag: article.urlToImage,
+                        tag: article.urlToImage!,
                         child: Image.network(
-                          article.urlToImage,
+                          article.urlToImage!,
                           width: 100,
                         ),
                       ),
                 title: Text(
-                  article.title ?? "",
+                  article.title,
                 ),
                 subtitle: Text(article.author ?? ""),
                 trailing: isBookmarked
                     ? IconButton(
                         icon: Icon(Icons.bookmark),
+                        color: Theme.of(context).accentColor,
                         onPressed: () => provider.removeBookmark(article.url),
                       )
                     : IconButton(
                         icon: Icon(Icons.bookmark_border),
+                        color: Theme.of(context).accentColor,
                         onPressed: () => provider.addBookmark(article),
                       ),
                 onTap: () => Navigation.intentWithData(

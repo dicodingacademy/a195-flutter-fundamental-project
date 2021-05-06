@@ -2,18 +2,14 @@ import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static DatabaseHelper _databaseHelper;
-  static Database _database;
-
-  DatabaseHelper._createObject();
+  static DatabaseHelper _databaseHelper = DatabaseHelper._internal();
+  static Database? _database;
 
   factory DatabaseHelper() {
-    if (_databaseHelper == null) {
-      _databaseHelper = DatabaseHelper._createObject();
-    }
-
     return _databaseHelper;
   }
+
+  DatabaseHelper._internal();
 
   static const String _tblBookmark = 'bookmarks';
 
@@ -39,7 +35,7 @@ class DatabaseHelper {
     return db;
   }
 
-  Future<Database> get database async {
+  Future<Database?> get database async {
     if (_database == null) {
       _database = await _initializeDb();
     }
@@ -49,12 +45,12 @@ class DatabaseHelper {
 
   Future<void> insertBookmark(Article article) async {
     final db = await database;
-    await db.insert(_tblBookmark, article.toJson());
+    await db?.insert(_tblBookmark, article.toJson());
   }
 
   Future<List<Article>> getBookmarks() async {
     final db = await database;
-    List<Map<String, dynamic>> results = await db.query(_tblBookmark);
+    List<Map<String, dynamic>> results = await db!.query(_tblBookmark);
 
     return results.map((res) => Article.fromJson(res)).toList();
   }
@@ -62,7 +58,7 @@ class DatabaseHelper {
   Future<Map> getBookmarkByUrl(String url) async {
     final db = await database;
 
-    List<Map<String, dynamic>> results = await db.query(
+    List<Map<String, dynamic>> results = await db!.query(
       _tblBookmark,
       where: 'url = ?',
       whereArgs: [url],
@@ -78,7 +74,7 @@ class DatabaseHelper {
   Future<void> removeBookmark(String url) async {
     final db = await database;
 
-    await db.delete(
+    await db!.delete(
       _tblBookmark,
       where: 'url = ?',
       whereArgs: [url],
