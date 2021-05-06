@@ -6,7 +6,6 @@ import 'package:dicoding_news_app/provider/scheduling_provider.dart';
 import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/ui/article_list_page.dart';
 import 'package:dicoding_news_app/ui/settings_page.dart';
-import 'package:dicoding_news_app/utils/background_service.dart';
 import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
