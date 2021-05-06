@@ -31,7 +31,7 @@ customDialog(BuildContext context) {
           title: Text('Coming Soon!'),
           content: Text('This feature will be coming soon!'),
           actions: [
-            FlatButton(
+            TextButton(
               onPressed: () {
                 Navigation.back();
               },

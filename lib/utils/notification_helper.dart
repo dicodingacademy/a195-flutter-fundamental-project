@@ -7,7 +7,7 @@ import 'package:rxdart/subjects.dart';
 final selectNotificationSubject = BehaviorSubject<String>();
 
 class NotificationHelper {
-  static NotificationHelper _instance;
+  static NotificationHelper? _instance;
 
   NotificationHelper._internal() {
     _instance = this;
@@ -27,14 +27,14 @@ class NotificationHelper {
     );
 
     var initializationSettings = InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String payload) async {
+        onSelectNotification: (String? payload) async {
       if (payload != null) {
         print('notification payload: ' + payload);
       }
-      selectNotificationSubject.add(payload);
+      selectNotificationSubject.add(payload ?? 'empty payload');
     });
   }
 
@@ -47,14 +47,15 @@ class NotificationHelper {
 
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         _channelId, _channelName, _channelDescription,
-        importance: Importance.Max,
-        priority: Priority.High,
+        importance: Importance.max,
+        priority: Priority.high,
         ticker: 'ticker',
         styleInformation: DefaultStyleInformation(true, true));
 
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics);
 
     var titleNotification = "<b>Headline News</b>";
     var titleNews = articles.articles[0].title;

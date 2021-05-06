@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesHelper {
   final Future<SharedPreferences> sharedPreferences;
 
-  PreferencesHelper({@required this.sharedPreferences});
+  PreferencesHelper({required this.sharedPreferences});
 
   static const DARK_THEME = 'DARK_THEME';
   static const DAILY_NEWS = 'DAILY_NEWS';

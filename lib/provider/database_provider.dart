@@ -6,11 +6,11 @@ import 'package:flutter/foundation.dart';
 class DatabaseProvider extends ChangeNotifier {
   final DatabaseHelper databaseHelper;
 
-  DatabaseProvider({@required this.databaseHelper}) {
+  DatabaseProvider({required this.databaseHelper}) {
     _getBookmarks();
   }
 
-  ResultState _state;
+  late ResultState _state;
   ResultState get state => _state;
 
   String _message = '';
