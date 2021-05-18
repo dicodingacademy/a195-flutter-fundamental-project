@@ -45,7 +45,7 @@ class DatabaseHelper {
 
   Future<void> insertBookmark(Article article) async {
     final db = await database;
-    await db?.insert(_tblBookmark, article.toJson());
+    await db!.insert(_tblBookmark, article.toJson());
   }
 
   Future<List<Article>> getBookmarks() async {
