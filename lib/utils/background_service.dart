@@ -34,8 +34,4 @@ class BackgroundService {
     _uiSendPort ??= IsolateNameServer.lookupPortByName(_isolateName);
     _uiSendPort?.send(null);
   }
-
-  Future<void> someTask() async {
-    print('Execute some process');
-  }
 }

@@ -80,8 +80,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    super.dispose();
     selectNotificationSubject.close();
+    super.dispose();
   }
 
   @override
