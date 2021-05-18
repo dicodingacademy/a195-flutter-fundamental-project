@@ -15,8 +15,8 @@ class _ArticleListPageState extends State<ArticleListPage> {
 
   @override
   void initState() {
-    _article = ApiService().topHeadlines();
     super.initState();
+    _article = ApiService().topHeadlines();
   }
 
   Widget _buildList(BuildContext context) {

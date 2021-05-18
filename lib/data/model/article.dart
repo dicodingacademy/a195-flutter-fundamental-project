@@ -15,9 +15,9 @@ class ArticlesResult {
         articles: List<Article>.from((json["articles"] as List)
             .map((x) => Article.fromJson(x))
             .where((article) =>
-                article.author != null ||
-                article.urlToImage != null ||
-                article.publishedAt != null ||
+                article.author != null &&
+                article.urlToImage != null &&
+                article.publishedAt != null &&
                 article.content != null)),
       );
 }
