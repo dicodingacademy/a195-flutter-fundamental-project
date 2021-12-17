@@ -1,4 +1,4 @@
-import 'package:android_alarm_manager/android_alarm_manager.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:dicoding_news_app/utils/background_service.dart';
 import 'package:dicoding_news_app/utils/date_time_helper.dart';
 import 'package:flutter/material.dart';
