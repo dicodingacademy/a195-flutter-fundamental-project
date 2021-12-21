@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:android_alarm_manager/android_alarm_manager.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/data/db/database_helper.dart';
