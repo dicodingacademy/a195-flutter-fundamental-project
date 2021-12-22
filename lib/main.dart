@@ -14,18 +14,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       theme: ThemeData(
-        primaryColor: primaryColor,
-        accentColor: secondaryColor,
+        colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: primaryColor,
+              onPrimary: Colors.black,
+              secondary: secondaryColor,
+            ),
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: myTextTheme,
-        appBarTheme: AppBarTheme(
-          textTheme: myTextTheme.apply(bodyColor: Colors.black),
-          elevation: 0,
-        ),
+        appBarTheme: AppBarTheme(elevation: 0),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             primary: secondaryColor,
+            onPrimary: Colors.white,
             textStyle: TextStyle(),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
