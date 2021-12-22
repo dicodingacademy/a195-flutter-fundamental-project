@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final Color primaryColor = Color(0xFFFFFFFF);
@@ -37,15 +36,15 @@ final TextTheme myTextTheme = TextTheme(
 );
 
 ThemeData lightTheme = ThemeData(
-  primaryColor: primaryColor,
-  accentColor: secondaryColor,
+  colorScheme: ThemeData.light().colorScheme.copyWith(
+        primary: primaryColor,
+        onPrimary: Colors.black,
+        secondary: secondaryColor,
+      ),
   scaffoldBackgroundColor: Colors.white,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   textTheme: myTextTheme,
-  appBarTheme: AppBarTheme(
-    textTheme: myTextTheme.apply(bodyColor: Colors.black),
-    elevation: 0,
-  ),
+  appBarTheme: AppBarTheme(elevation: 0),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: secondaryColor,
     unselectedItemColor: Colors.grey,
@@ -53,6 +52,7 @@ ThemeData lightTheme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: secondaryColor,
+      onPrimary: Colors.white,
       textStyle: TextStyle(),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -64,14 +64,14 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
-  primaryColor: darkPrimaryColor,
-  accentColor: darkSecondaryColor,
+  colorScheme: ThemeData.dark().colorScheme.copyWith(
+        primary: darkPrimaryColor,
+        onPrimary: Colors.black,
+        secondary: darkSecondaryColor,
+      ),
   visualDensity: VisualDensity.adaptivePlatformDensity,
   textTheme: myTextTheme,
-  appBarTheme: AppBarTheme(
-    textTheme: myTextTheme.apply(bodyColor: Colors.white),
-    elevation: 0,
-  ),
+  appBarTheme: AppBarTheme(elevation: 0),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: darkSecondaryColor,
     unselectedItemColor: Colors.grey,
@@ -79,6 +79,7 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       primary: secondaryColor,
+      onPrimary: Colors.white,
       textStyle: TextStyle(),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
