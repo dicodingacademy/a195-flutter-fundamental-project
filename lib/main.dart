@@ -3,10 +3,12 @@ import 'package:dicoding_news_app/detail_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: NewsListPage.routeName,
       routes: {
-        NewsListPage.routeName: (context) => NewsListPage(),
+        NewsListPage.routeName: (context) => const NewsListPage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
               article: ModalRoute.of(context)?.settings.arguments as Article,
             ),
@@ -32,11 +34,13 @@ class MyApp extends StatelessWidget {
 class NewsListPage extends StatelessWidget {
   static const routeName = '/article_list';
 
+  const NewsListPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News App'),
+        title: const Text('News App'),
       ),
       body: FutureBuilder<String>(
         future:
@@ -56,8 +60,10 @@ class NewsListPage extends StatelessWidget {
 
   Widget _buildArticleItem(BuildContext context, Article article) {
     return ListTile(
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 8.0,
+      ),
       leading: Image.network(
         article.urlToImage,
         width: 100,
