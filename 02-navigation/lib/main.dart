@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tourism_app/model/tourism.dart';
+import 'package:tourism_app/screen/detail/detail_screen.dart';
 import 'package:tourism_app/screen/home/home_screen.dart';
+import 'package:tourism_app/static/navigation_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +20,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomeScreen(),
+      // todo-04: add navigation route
+      initialRoute: NavigationRoute.homeRoute,
+      routes: {
+        NavigationRoute.homeRoute: (context) => const HomeScreen(),
+        NavigationRoute.detailRoute: (context) => DetailScreen(
+              tourism: ModalRoute.of(context)?.settings.arguments as Tourism,
+            ),
+      },
     );
   }
 }
