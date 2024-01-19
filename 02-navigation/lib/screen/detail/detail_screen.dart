@@ -30,20 +30,22 @@ class DetailScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tourism.name,
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                      Text(
-                        tourism.address,
-                        style: const TextStyle(
-                          fontSize: 12,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tourism.name,
+                          style: const TextStyle(fontSize: 18),
                         ),
-                      ),
-                    ],
+                        Text(
+                          tourism.address,
+                          style: const TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Row(
                     children: [

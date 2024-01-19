@@ -25,33 +25,35 @@ class DetailScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               const SizedBox.square(dimension: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        tourism.name,
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                      Text(
-                        tourism.address,
-                        style: const TextStyle(
-                          fontSize: 12,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tourism.name,
+                          style: const TextStyle(fontSize: 18),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.star),
-                      const SizedBox.square(dimension: 4),
-                      Text(tourism.like.toString())
-                    ],
-                  ),
-                ],
+                        Text(
+                          tourism.address,
+                          style: const TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(Icons.star),
+                        const SizedBox.square(dimension: 4),
+                        Text(tourism.like.toString())
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox.square(dimension: 16),
               Text(

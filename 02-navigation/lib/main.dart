@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       // todo-04: add navigation route
-      initialRoute: NavigationRoute.homeRoute,
+      initialRoute: NavigationRoute.homeRoute.name,
       routes: {
-        NavigationRoute.homeRoute: (context) => const HomeScreen(),
-        NavigationRoute.detailRoute: (context) => DetailScreen(
+        NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
+        NavigationRoute.detailRoute.name: (context) => DetailScreen(
               tourism: ModalRoute.of(context)?.settings.arguments as Tourism,
             ),
       },

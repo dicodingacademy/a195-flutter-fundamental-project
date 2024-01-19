@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(
                 context,
-                NavigationRoute.detailRoute,
+                NavigationRoute.detailRoute.name,
                 arguments: tourism,
               );
             },
