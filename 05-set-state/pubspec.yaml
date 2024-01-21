@@ -1,0 +1,42 @@
+name: tourism_app
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.4 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: IBMPlexSansCondensed
+      fonts:
+        - asset: assets/fonts/IBMPlexSansCondensed-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/IBMPlexSansCondensed-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/IBMPlexSansCondensed-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSansCondensed-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBMPlexSansCondensed-Light.ttf
+          weight: 300
+        - asset: assets/fonts/IBMPlexSansCondensed-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/IBMPlexSansCondensed-Thin.ttf
+          weight: 100
