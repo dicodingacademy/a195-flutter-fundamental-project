@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourism_app/model/tourism.dart';
 import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
-import 'package:tourism_app/provider/detail/favorite_icon_provider.dart';
+import 'package:tourism_app/provider/detail/bookmark_icon_provider.dart';
 
 class FavoriteIconWidget extends StatefulWidget {
   final Tourism tourism;

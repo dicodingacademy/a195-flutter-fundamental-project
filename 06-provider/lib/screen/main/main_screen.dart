@@ -4,14 +4,10 @@ import 'package:tourism_app/provider/main/index_nav_provider.dart';
 import 'package:tourism_app/screen/bookmark/bookmark_screen.dart';
 import 'package:tourism_app/screen/home/home_screen.dart';
 
-class MainScreen extends StatefulWidget {
+// todo-main-10: set this widget into StatelessWidget
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
   // todo-main-09: remove _indexBottomNavBar state
   // int _indexBottomNavBar = 0;
 

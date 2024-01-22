@@ -17,14 +17,14 @@ class BookmarkListProvider extends ChangeNotifier {
 
   // todo-list-05: create a function to remove a list item
   void removeBookmark(Tourism value) {
-    _bookmarkList.removeWhere((element) => element == value);
+    _bookmarkList.removeWhere((element) => element.id == value.id);
     notifyListeners();
   }
 
   // todo-list-06: create a function to check neither is exist or not
   bool checkItemBookmark(Tourism value) {
     final tourismInList =
-        _bookmarkList.where((element) => element == value);
+        _bookmarkList.where((element) => element.id == value.id);
     return tourismInList.isNotEmpty;
   }
 }

@@ -22,7 +22,7 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
   @override
   void didChangeDependencies() {
     final tourismInList =
-        bookmarkTourismList.where((element) => element == widget.tourism);
+        bookmarkTourismList.where((element) => element.id == widget.tourism.id);
     setState(() {
       if (tourismInList.isNotEmpty) {
         _isBookmarked = true;
@@ -45,7 +45,7 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
             bookmarkTourismList.add(widget.tourism);
           } else {
             bookmarkTourismList
-                .removeWhere((element) => element == widget.tourism);
+                .removeWhere((element) => element.id == widget.tourism.id);
           }
           _isBookmarked = !_isBookmarked;
         });

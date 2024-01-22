@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourism_app/model/tourism.dart';
-import 'package:tourism_app/provider/detail/favorite_icon_provider.dart';
+import 'package:tourism_app/provider/detail/bookmark_icon_provider.dart';
 import 'package:tourism_app/screen/detail/bookmark_icon_widget.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tourism List"),
+        title: const Text("Tourism Detail"),
         actions: [
           // todo-bookmark-08: add BookmarkIconProvider to the list
           ChangeNotifierProvider(
