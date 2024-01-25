@@ -60,7 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pushNamed(
                         context,
                         NavigationRoute.detailRoute.name,
-                        arguments: tourism,
+                        // todo-detail-06: dont forget to change the value too
+                        arguments: tourism.id,
                       );
                     },
                   );

@@ -17,8 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   // late Future<TourismListResponse> _futureTourismResponse;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
     // todo-home-14: we dont need this anymore
     // _futureTourismResponse = ApiServices().getTourismList();
     // todo-home-10: load the api using Provider

@@ -18,7 +18,7 @@ class FavoriteIconWidget extends StatefulWidget {
 
 class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   @override
-  void didChangeDependencies() {
+  void initState() {
     final bookmarkListProvider = context.read<BookmarkListProvider>();
     final bookmarkIconProvider = context.read<BookmarkIconProvider>();
 
@@ -28,7 +28,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
       bookmarkIconProvider.isBookmarked = tourismInList;
     });
 
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override

@@ -18,7 +18,6 @@ class TourismDetailProvider extends ChangeNotifier {
 
   // todo-detail-06: create a function to load a detail page
   Future<void> fetchTourismDetail(int id) async {
-    print("yuhuu");
     try {
       _resultState = TourismDetailLoadingState();
       notifyListeners();

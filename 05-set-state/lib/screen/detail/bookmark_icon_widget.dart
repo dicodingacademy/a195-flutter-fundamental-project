@@ -20,7 +20,7 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
 
   // todo-logic-04: set a local variable from bookmark list value
   @override
-  void didChangeDependencies() {
+  void initState() {
     final tourismInList =
         bookmarkTourismList.where((element) => element.id == widget.tourism.id);
     setState(() {
@@ -31,7 +31,7 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
       }
     });
 
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override

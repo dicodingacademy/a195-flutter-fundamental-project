@@ -36,7 +36,8 @@ class TourismListResponse {
                   .toList()
               : <Tourism>[],
         ),
-      _ => throw const FormatException('Failed to load tourism list response data.'),
+      _ => throw const FormatException(
+          'Failed to load tourism list response data.'),
     };
   }
 }

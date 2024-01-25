@@ -20,7 +20,7 @@ class BookmarkScreen extends StatelessWidget {
           final bookmarkList = value.bookmarkList;
           return switch (bookmarkList.isNotEmpty) {
             true => ListView.builder(
-              // todo-list-09: dont forget to change he list value
+                // todo-list-09: dont forget to change he list value
                 itemCount: bookmarkList.length,
                 itemBuilder: (context, index) {
                   final tourism = bookmarkList[index];

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourism_app/model/tourism.dart';
@@ -22,7 +21,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   // late bool _isBookmarked;
 
   @override
-  void didChangeDependencies() {
+  void initState() {
     // todo-bookmark-04: change the process using Provider
     final bookmarkListProvider = context.read<BookmarkListProvider>();
     final bookmarkIconProvider = context.read<BookmarkIconProvider>();
@@ -33,7 +32,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
       bookmarkIconProvider.isBookmarked = tourismInList;
     });
 
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override

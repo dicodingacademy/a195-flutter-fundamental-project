@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tourism App',
       // todo-07: replace this and change with a new theme
-      // don't forget to add theme mode 
+      // don't forget to add theme mode
       theme: TourismTheme.lightTheme,
       darkTheme: TourismTheme.darkTheme,
       themeMode: ThemeMode.system,

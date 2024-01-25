@@ -26,8 +26,8 @@ class _DetailScreenState extends State<DetailScreen> {
   // late Future<TourismDetailResponse> _futureTourismDetail;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
 
     // todo-detail-08: you can change this action using provider
     // _futureTourismDetail = ApiServices().getTourismDetail(widget.tourism.id);
