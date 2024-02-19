@@ -70,12 +70,13 @@ class ArticleWebView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = WebViewController()..loadRequest(Uri.parse(url));
     return Scaffold(
       appBar: AppBar(
         title: const Text('News App'),
       ),
-      body: WebView(
-        initialUrl: url,
+      body: WebViewWidget(
+        controller: controller,
       ),
     );
   }
