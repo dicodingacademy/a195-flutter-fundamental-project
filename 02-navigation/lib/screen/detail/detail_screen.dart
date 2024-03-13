@@ -49,7 +49,7 @@ class DetailScreen extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.star),
+                      const Icon(Icons.favorite),
                       const SizedBox.square(dimension: 4),
                       Text(tourism.like.toString())
                     ],

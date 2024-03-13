@@ -57,8 +57,8 @@ class DetailScreen extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(
-                        Icons.star,
-                        color: Colors.amber,
+                        Icons.favorite,
+                        color: Colors.pink,
                       ),
                       const SizedBox.square(dimension: 4),
                       Text(
