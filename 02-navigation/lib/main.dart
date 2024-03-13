@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
       // todo-04: add navigation route
       initialRoute: NavigationRoute.homeRoute.name,
       routes: {
