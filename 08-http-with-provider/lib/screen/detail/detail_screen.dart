@@ -21,7 +21,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  // todo-detail-11: we dont need this anymore
+  // todo-03-detail-08: we dont need this anymore
   // final Completer<Tourism> _completerTourism = Completer<Tourism>();
   // late Future<TourismDetailResponse> _futureTourismDetail;
 
@@ -29,7 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     super.initState();
 
-    // todo-detail-08: you can change this action using provider
+    // todo-03-detail-05: you can change this action using provider
     // _futureTourismDetail = ApiServices().getTourismDetail(widget.tourism.id);
     Future.microtask(() {
       context
@@ -46,12 +46,12 @@ class _DetailScreenState extends State<DetailScreen> {
         actions: [
           ChangeNotifierProvider(
             create: (context) => BookmarkIconProvider(),
-            // todo-detail-09: change this widget using Consumer
+            // todo-03-detail-06: change this widget using Consumer
             child: Consumer<TourismDetailProvider>(
               builder: (context, value, child) {
                 return switch (value.resultState) {
                   TourismDetailLoadedState(data: var tourism) =>
-                    FavoriteIconWidget(tourism: tourism),
+                    BookmarkIconWidget(tourism: tourism),
                   _ => const SizedBox(),
                 };
               },
@@ -59,7 +59,7 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ],
       ),
-      // todo-detail-10: change this widget using Consumer too
+      // todo-03-detail-07: change this widget using Consumer too
       body: Consumer<TourismDetailProvider>(
         builder: (context, value, child) {
           return switch (value.resultState) {

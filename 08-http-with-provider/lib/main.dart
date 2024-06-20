@@ -21,7 +21,7 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => BookmarkListProvider(),
         ),
-        // todo-home-09: register the tourism list provider
+        // todo-04-inject-01: register the tourism list provider
         Provider(
           create: (context) => ApiServices(),
         ),
@@ -30,7 +30,7 @@ void main() {
             context.read<ApiServices>(),
           ),
         ),
-        // todo-detail-07: register the tourism detail provider
+        // todo-04-inject-02: register the tourism detail provider
         ChangeNotifierProvider(
           create: (context) => TourismDetailProvider(
             context.read<ApiServices>(),

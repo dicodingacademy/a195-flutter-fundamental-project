@@ -14,7 +14,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   provider: ^6.1.1
-  # todo-api-01: add http dependency and dont forget to load it
+  # todo-02-api-01: add http dependency and dont forget to load it
   http: ^1.2.0
 
 dev_dependencies:

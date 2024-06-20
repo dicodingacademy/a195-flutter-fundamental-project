@@ -44,7 +44,7 @@ class _DetailScreenState extends State<DetailScreen> {
               builder: (context, value, child) {
                 return switch (value.resultState) {
                   TourismDetailLoadedState(data: var tourism) =>
-                    FavoriteIconWidget(tourism: tourism),
+                    BookmarkIconWidget(tourism: tourism),
                   _ => const SizedBox(),
                 };
               },

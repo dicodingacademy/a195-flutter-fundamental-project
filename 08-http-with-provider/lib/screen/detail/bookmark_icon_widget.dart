@@ -4,19 +4,19 @@ import 'package:tourism_app/data/model/tourism.dart';
 import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/provider/detail/bookmark_icon_provider.dart';
 
-class FavoriteIconWidget extends StatefulWidget {
+class BookmarkIconWidget extends StatefulWidget {
   final Tourism tourism;
 
-  const FavoriteIconWidget({
+  const BookmarkIconWidget({
     super.key,
     required this.tourism,
   });
 
   @override
-  State<FavoriteIconWidget> createState() => _FavoriteIconWidgetState();
+  State<BookmarkIconWidget> createState() => _BookmarkIconWidgetState();
 }
 
-class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
+class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
   @override
   void initState() {
     final bookmarkListProvider = context.read<BookmarkListProvider>();

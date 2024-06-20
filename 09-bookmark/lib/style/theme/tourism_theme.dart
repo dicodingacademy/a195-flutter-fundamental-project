@@ -9,6 +9,7 @@ class TourismTheme {
       brightness: Brightness.light,
       textTheme: _textTheme,
       useMaterial3: true,
+      appBarTheme: _appBarTheme,
     );
   }
 
@@ -18,6 +19,7 @@ class TourismTheme {
       brightness: Brightness.dark,
       textTheme: _textTheme,
       useMaterial3: true,
+      appBarTheme: _appBarTheme,
     );
   }
 
@@ -29,12 +31,27 @@ class TourismTheme {
       headlineLarge: TourismTextStyles.headlineLarge,
       headlineMedium: TourismTextStyles.headlineMedium,
       headlineSmall: TourismTextStyles.headlineSmall,
+      titleLarge: TourismTextStyles.titleLarge,
+      titleMedium: TourismTextStyles.titleMedium,
+      titleSmall: TourismTextStyles.titleSmall,
       bodyLarge: TourismTextStyles.bodyLargeBold,
       bodyMedium: TourismTextStyles.bodyLargeMedium,
       bodySmall: TourismTextStyles.bodyLargeRegular,
       labelLarge: TourismTextStyles.labelLarge,
       labelMedium: TourismTextStyles.labelMedium,
       labelSmall: TourismTextStyles.labelSmall,
+    );
+  }
+
+  static AppBarTheme get _appBarTheme {
+    return AppBarTheme(
+      toolbarTextStyle: _textTheme.titleLarge,
+      shape: const BeveledRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(14),
+          bottomRight: Radius.circular(14),
+        ),
+      ),
     );
   }
 }

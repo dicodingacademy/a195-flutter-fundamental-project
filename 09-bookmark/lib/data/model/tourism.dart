@@ -45,8 +45,8 @@ class Tourism {
     };
   }
 
-  // todo-service-2: create a method to convert a class into map object
-  Map<String, dynamic> toMap() {
+  // todo-01-local-2: create a method to convert a class into map object
+  Map<String, dynamic> toJson() {
     return <String, dynamic>{
       "id": id,
       "name": name,

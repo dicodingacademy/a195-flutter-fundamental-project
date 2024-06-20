@@ -13,14 +13,14 @@ class BookmarkScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Bookmark List"),
       ),
-      // todo-list-07: wrap this list with Consumer
+      // todo-02-list-07: wrap this list with Consumer
       body: Consumer<BookmarkListProvider>(
         builder: (context, value, child) {
-          // todo-list-08: add if-else if the list is empty
+          // todo-02-list-08: add if-else if the list is empty
           final bookmarkList = value.bookmarkList;
           return switch (bookmarkList.isNotEmpty) {
             true => ListView.builder(
-                // todo-list-09: dont forget to change he list value
+                // todo-02-list-09: dont forget to change he list value
                 itemCount: bookmarkList.length,
                 itemBuilder: (context, index) {
                   final tourism = bookmarkList[index];

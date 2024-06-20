@@ -19,35 +19,22 @@ class Tourism {
     required this.image,
   });
 
-  // todo-setup-01: create a factory constructor to convert json to object class
+  // todo-01-setup-01: create a factory constructor to convert json to object class
   factory Tourism.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        "id": int id,
-        "name": String name,
-        "description": String description,
-        "address": String address,
-        "longitude": double longitude,
-        "latitude": double latitude,
-        "like": int like,
-        "image": String image,
-      } =>
-        Tourism(
-          id: id,
-          name: name,
-          description: description,
-          address: address,
-          longitude: longitude,
-          latitude: latitude,
-          like: like,
-          image: image,
-        ),
-      _ => throw const FormatException('Failed to load tourism data.'),
-    };
+    return Tourism(
+      id: json["id"],
+      name: json["name"],
+      description: json["description"],
+      address: json["address"],
+      longitude: json["longitude"],
+      latitude: json["latitude"],
+      like: json["like"],
+      image: json["image"],
+    );
   }
 }
 
-// todo-home-08: we dont need this anymore
+// todo-03-home-08: we dont need this anymore
 /*
 final List<Tourism> tourismList = [
   Tourism(

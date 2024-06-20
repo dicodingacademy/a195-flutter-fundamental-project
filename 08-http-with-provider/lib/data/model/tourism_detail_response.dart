@@ -12,19 +12,10 @@ class TourismDetailResponse {
   });
 
   factory TourismDetailResponse.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        "error": bool error,
-        "message": String message,
-        "place": Map<String, dynamic> place,
-      } =>
-        TourismDetailResponse(
-          error: error,
-          message: message,
-          place: Tourism.fromJson(place),
-        ),
-      _ => throw const FormatException(
-          'Failed to load tourism detail response data.'),
-    };
+    return TourismDetailResponse(
+      error: json["error"],
+      message: json["message"],
+      place: Tourism.fromJson(json["place"]),
+    );
   }
 }

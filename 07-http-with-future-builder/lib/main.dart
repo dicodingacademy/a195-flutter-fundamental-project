@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         NavigationRoute.mainRoute.name: (context) => const MainScreen(),
         NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
-        // todo-detail-05: dont forget to change the variable
+        // todo-04-detail-12: dont forget to change the variable
         NavigationRoute.detailRoute.name: (context) => DetailScreen(
               tourismId: ModalRoute.of(context)?.settings.arguments as int,
             ),

@@ -20,13 +20,12 @@ class MyApp extends StatelessWidget {
       theme: TourismTheme.lightTheme,
       darkTheme: TourismTheme.darkTheme,
       themeMode: ThemeMode.system,
-      // todo-main-09: change the main route for MainScreen
+      // todo-03-main-09: change the main route for MainScreen
       home: const MainScreen(),
       initialRoute: NavigationRoute.mainRoute.name,
       routes: {
-        // todo-main-10: don't forget to add a spesific route
+        // todo-03-main-10: don't forget to add a spesific route
         NavigationRoute.mainRoute.name: (context) => const MainScreen(),
-        NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
         NavigationRoute.detailRoute.name: (context) => DetailScreen(
               tourism: ModalRoute.of(context)?.settings.arguments as Tourism,
             ),

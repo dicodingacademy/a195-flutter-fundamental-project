@@ -1,4 +1,4 @@
-// todo-detail-01: create a class for api response
+// todo-04-detail-01: create a class for api response
 import 'package:tourism_app/data/model/tourism.dart';
 
 class TourismDetailResponse {
@@ -12,21 +12,12 @@ class TourismDetailResponse {
     required this.place,
   });
 
-  // todo-detail-02: dont forget to add map converter
+  // todo-04-detail-02: dont forget to add map converter
   factory TourismDetailResponse.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        "error": bool error,
-        "message": String message,
-        "place": Map<String, dynamic> place,
-      } =>
-        TourismDetailResponse(
-          error: error,
-          message: message,
-          place: Tourism.fromJson(place),
-        ),
-      _ => throw const FormatException(
-          'Failed to load tourism detail response data.'),
-    };
+    return TourismDetailResponse(
+      error: json["error"],
+      message: json["message"],
+      place: Tourism.fromJson(json["place"]),
+    );
   }
 }

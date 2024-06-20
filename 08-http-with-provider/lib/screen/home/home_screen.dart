@@ -13,15 +13,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // todo-home-14: we dont need this anymore
+  // todo-02-home-13: we dont need this anymore
   // late Future<TourismListResponse> _futureTourismResponse;
 
   @override
   void initState() {
     super.initState();
-    // todo-home-14: we dont need this anymore
+    // todo-02-home-13: we dont need this anymore
     // _futureTourismResponse = ApiServices().getTourismList();
-    // todo-home-10: load the api using Provider
+    // todo-02-home-09: load the api using Provider
     Future.microtask(() {
       context.read<TourismListProvider>().fetchTourismList();
     });
@@ -33,11 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Tourism List"),
       ),
-      // todo-home-11: comment this code below
-      // todo-home-12: add a Consumer to maintain the result state
+      // todo-02-home-10: comment this code below
+      // todo-02-home-11: add a Consumer to maintain the result state
       body: Consumer<TourismListProvider>(
         builder: (context, value, child) {
-          // todo-home-13: use sealed class to define a various state
+          // todo-02-home-12: use sealed class to define a various state
           return switch (value.resultState) {
             TourismListLoadingState() => const Center(
                 child: CircularProgressIndicator(),

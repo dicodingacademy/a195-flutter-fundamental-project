@@ -15,9 +15,9 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tourism Detail"),
-        // todo-init-02: add button to call action bookmark
+        // todo-01-init-02: add button to call action bookmark
         actions: [
-          // todo-logic-01: extract this widget into a new widget
+          // todo-04-logic-01: extract this widget into a new widget
           // pass a tourism value to this widget
           BookmarkIconWidget(tourism: tourism),
         ],

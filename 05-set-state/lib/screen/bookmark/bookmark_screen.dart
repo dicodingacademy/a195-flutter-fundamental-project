@@ -1,4 +1,4 @@
-// todo-bookmark-01: create a BookmarkScreen
+// todo-02-bookmark-01: create a BookmarkScreen
 import 'package:flutter/material.dart';
 import 'package:tourism_app/model/tourism.dart';
 import 'package:tourism_app/static/navigation_route.dart';
@@ -14,11 +14,11 @@ class BookmarkScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Bookmark List"),
       ),
-      // todo-bookmark-02: create a bookmark tourism list
+      // todo-02-bookmark-02: create a bookmark tourism list
       body: ListView.builder(
         itemCount: bookmarkTourismList.length,
         itemBuilder: (context, index) {
-          // todo-bookmark-03: use TourismCard to create a item list
+          // todo-02-bookmark-03: use TourismCard to create a item list
           final tourism = bookmarkTourismList[index];
 
           return TourismCard(

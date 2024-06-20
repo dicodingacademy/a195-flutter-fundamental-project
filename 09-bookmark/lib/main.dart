@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourism_app/data/api/api_services.dart';
-import 'package:tourism_app/data/local/local_database_services.dart';
+import 'package:tourism_app/data/local/local_database_service.dart';
 import 'package:tourism_app/provider/bookmark/local_database_provider.dart';
 import 'package:tourism_app/provider/detail/tourism_detail_provider.dart';
 import 'package:tourism_app/provider/home/tourism_list_provider.dart';
@@ -19,7 +19,7 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => IndexNavProvider(),
         ),
-        // todo-action-07: remove this injection
+        // todo-03-action-07: remove this injection
         // ChangeNotifierProvider(
         //   create: (context) => BookmarkListProvider(),
         // ),
@@ -36,7 +36,7 @@ void main() {
             context.read<ApiServices>(),
           ),
         ),
-        // todo-provider-08: register the provider
+        // todo-02-provider-08: register the provider
         Provider(
           create: (context) => LocalDatabaseService(),
         ),

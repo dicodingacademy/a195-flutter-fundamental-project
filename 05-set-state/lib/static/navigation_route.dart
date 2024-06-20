@@ -1,7 +1,6 @@
 enum NavigationRoute {
-  // todo-main-08: add route name for MainScreen
+  // todo-03-main-08: add route name for MainScreen
   mainRoute("main"),
-  homeRoute("home"),
   detailRoute("detail");
 
   const NavigationRoute(this.name);

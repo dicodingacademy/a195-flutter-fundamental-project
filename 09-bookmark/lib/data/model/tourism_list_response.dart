@@ -14,28 +14,13 @@ class TourismListResponse {
   });
 
   factory TourismListResponse.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        "error": bool error,
-        "message": String message,
-        "count": int count,
-        "places": List<dynamic>? places,
-      } =>
-        TourismListResponse(
-          error: error,
-          message: message,
-          count: count,
-          places: places != null
-              ? places
-                  .map(
-                    (placeData) =>
-                        Tourism.fromJson(placeData as Map<String, dynamic>),
-                  )
-                  .toList()
-              : <Tourism>[],
-        ),
-      _ => throw const FormatException(
-          'Failed to load tourism list response data.'),
-    };
+    return TourismListResponse(
+      error: json["error"],
+      message: json["message"],
+      count: json["count"],
+      places: json["places"] != null
+          ? List<Tourism>.from(json["places"]!.map((x) => Tourism.fromJson(x)))
+          : <Tourism>[],
+    );
   }
 }

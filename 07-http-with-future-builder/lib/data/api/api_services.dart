@@ -1,5 +1,5 @@
-// todo-api-02: restructure this folder
-// todo-api-03: create a folder for API services
+// todo-02-api-02: restructure this folder
+// todo-02-api-03: create a folder for API services
 import 'dart:convert';
 
 import 'package:tourism_app/data/model/tourism_detail_response.dart';
@@ -7,10 +7,10 @@ import 'package:tourism_app/data/model/tourism_list_response.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
-  // todo-api-04: add base url for api
+  // todo-02-api-04: add base url for api
   static const String _baseUrl = "https://tourism-api.dicoding.dev";
 
-  // todo-api-05: create an end-point to get a list of tourism
+  // todo-02-api-05: create an end-point to get a list of tourism
   Future<TourismListResponse> getTourismList() async {
     final response = await http.get(Uri.parse("$_baseUrl/list"));
 
@@ -21,7 +21,7 @@ class ApiServices {
     }
   }
 
-  // todo-detail-03: add end-point to get a detail of tourism place
+  // todo-04-detail-03: add end-point to get a detail of tourism place
   Future<TourismDetailResponse> getTourismDetail(int id) async {
     final response = await http.get(Uri.parse("$_baseUrl/detail/$id"));
 

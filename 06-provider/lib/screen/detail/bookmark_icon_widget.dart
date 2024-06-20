@@ -4,25 +4,25 @@ import 'package:tourism_app/model/tourism.dart';
 import 'package:tourism_app/provider/detail/bookmark_list_provider.dart';
 import 'package:tourism_app/provider/detail/bookmark_icon_provider.dart';
 
-class FavoriteIconWidget extends StatefulWidget {
+class BookmarkIconWidget extends StatefulWidget {
   final Tourism tourism;
 
-  const FavoriteIconWidget({
+  const BookmarkIconWidget({
     super.key,
     required this.tourism,
   });
 
   @override
-  State<FavoriteIconWidget> createState() => _FavoriteIconWidgetState();
+  State<BookmarkIconWidget> createState() => _BookmarkIconWidgetState();
 }
 
-class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
-  // todo-bookmark-07: remove this state
+class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
+  // todo-03-bookmark-07: remove this state
   // late bool _isBookmarked;
 
   @override
   void initState() {
-    // todo-bookmark-04: change the process using Provider
+    // todo-03-bookmark-04: change the process using Provider
     final bookmarkListProvider = context.read<BookmarkListProvider>();
     final bookmarkIconProvider = context.read<BookmarkIconProvider>();
 
@@ -39,7 +39,7 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        // todo-bookmark-05: replace this state using provider
+        // todo-03-bookmark-05: replace this state using provider
         final bookmarkListProvider = context.read<BookmarkListProvider>();
         final bookmarkIconProvider = context.read<BookmarkIconProvider>();
         final isBookmarked = bookmarkIconProvider.isBookmarked;
@@ -49,10 +49,10 @@ class _FavoriteIconWidgetState extends State<FavoriteIconWidget> {
         } else {
           bookmarkListProvider.removeBookmark(widget.tourism);
         }
-        context.read<BookmarkIconProvider>().isBookmarked = !isBookmarked;
+        bookmarkIconProvider.isBookmarked = !isBookmarked;
       },
       icon: Icon(
-        // todo-bookmark-06: change this state using Provider
+        // todo-03-bookmark-06: change this state using Provider
         context.watch<BookmarkIconProvider>().isBookmarked
             ? Icons.bookmark
             : Icons.bookmark_outline,

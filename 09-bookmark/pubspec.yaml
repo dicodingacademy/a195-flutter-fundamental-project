@@ -16,7 +16,7 @@ dependencies:
   provider: ^6.1.1
 
   http: ^1.2.0
-  # todo-local-01: add sqflite dependency and dont forget to load
+  # todo-01-local-01: add sqflite dependency and dont forget to load
   sqflite: ^2.3.1
 
 dev_dependencies:

@@ -18,10 +18,10 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Tourism Detail"),
         actions: [
-          // todo-bookmark-08: add BookmarkIconProvider to the list
+          // todo-03-bookmark-08: add BookmarkIconProvider to the list
           ChangeNotifierProvider(
             create: (context) => BookmarkIconProvider(),
-            child: FavoriteIconWidget(tourism: tourism),
+            child: BookmarkIconWidget(tourism: tourism),
           ),
         ],
       ),

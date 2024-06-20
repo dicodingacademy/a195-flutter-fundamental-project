@@ -10,8 +10,8 @@ import 'package:tourism_app/static/navigation_route.dart';
 import 'package:tourism_app/style/theme/tourism_theme.dart';
 
 void main() {
-  // todo-main-11: wrap MyApp widget with ChangeNotifierProvider
-  // todo-list-10: add BookmarkListProvider to this widget
+  // todo-01-main-11: wrap MyApp widget with ChangeNotifierProvider
+  // todo-02-list-10: add BookmarkListProvider to this widget
   runApp(
     MultiProvider(
       providers: [
