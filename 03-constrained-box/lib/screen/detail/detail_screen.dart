@@ -25,12 +25,12 @@ class DetailScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               const SizedBox.square(dimension: 16),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -45,15 +45,15 @@ class DetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        const Icon(Icons.favorite),
-                        const SizedBox.square(dimension: 4),
-                        Text(tourism.like.toString())
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.favorite),
+                      const SizedBox.square(dimension: 4),
+                      Text(tourism.like.toString())
+                    ],
+                  ),
+                ],
               ),
               const SizedBox.square(dimension: 16),
               Text(

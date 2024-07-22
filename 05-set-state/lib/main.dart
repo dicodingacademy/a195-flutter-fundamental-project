@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourism_app/model/tourism.dart';
 import 'package:tourism_app/screen/detail/detail_screen.dart';
-import 'package:tourism_app/screen/home/home_screen.dart';
 import 'package:tourism_app/screen/main/main_screen.dart';
 import 'package:tourism_app/static/navigation_route.dart';
 import 'package:tourism_app/style/theme/tourism_theme.dart';
