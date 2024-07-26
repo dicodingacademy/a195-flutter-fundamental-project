@@ -44,10 +44,10 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
         final isBookmarked = bookmarkIconProvider.isBookmarked;
 
         // todo-03-action-05: change this action using LocalDatabaseProvider
-        if (!isBookmarked) {
-          await localDatabaseProvider.saveTourismValue(widget.tourism);
-        } else {
+        if (isBookmarked) {
           await localDatabaseProvider.removeTourismValueById(widget.tourism.id);
+        } else {
+          await localDatabaseProvider.saveTourismValue(widget.tourism);
         }
         bookmarkIconProvider.isBookmarked = !isBookmarked;
         // todo-03-action-06: add this action to load the page

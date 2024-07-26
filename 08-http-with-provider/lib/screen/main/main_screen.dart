@@ -13,8 +13,8 @@ class MainScreen extends StatelessWidget {
       body: Consumer<IndexNavProvider>(
         builder: (context, value, child) {
           return switch (value.indexBottomNavBar) {
-            1 => const BookmarkScreen(),
-            _ => const HomeScreen(),
+            0 => const HomeScreen(),
+            _ => const BookmarkScreen(),
           };
         },
       ),

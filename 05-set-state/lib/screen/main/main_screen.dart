@@ -19,8 +19,8 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       // todo-03-main-07: add body of main screen
       body: switch (_indexBottomNavBar) {
-        1 => const BookmarkScreen(),
-        _ => const HomeScreen(),
+        0 => const HomeScreen(),
+        _ => const BookmarkScreen(),
       },
       // todo-03-main-02: add bottom nav bar
       bottomNavigationBar: BottomNavigationBar(

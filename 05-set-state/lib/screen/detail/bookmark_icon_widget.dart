@@ -41,11 +41,11 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
       // when is already exist in bookmark, remove it
       onPressed: () {
         setState(() {
-          if (!_isBookmarked) {
-            bookmarkTourismList.add(widget.tourism);
-          } else {
+          if (_isBookmarked) {
             bookmarkTourismList
                 .removeWhere((element) => element.id == widget.tourism.id);
+          } else {
+            bookmarkTourismList.add(widget.tourism);
           }
           _isBookmarked = !_isBookmarked;
         });
