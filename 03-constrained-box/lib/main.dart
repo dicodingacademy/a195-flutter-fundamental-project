@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
       initialRoute: NavigationRoute.homeRoute.name,
       routes: {
         NavigationRoute.homeRoute.name: (context) => const HomeScreen(),

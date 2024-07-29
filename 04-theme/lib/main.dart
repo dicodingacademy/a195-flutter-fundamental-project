@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       theme: TourismTheme.lightTheme,
       darkTheme: TourismTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const HomeScreen(),
       initialRoute: NavigationRoute.homeRoute.name,
       routes: {
         NavigationRoute.homeRoute.name: (context) => const HomeScreen(),
