@@ -27,9 +27,7 @@ class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
     Future.microtask(() async {
       // todo-03-action-03: change this action using LocalDatabaseProvider
       await localDatabaseProvider.loadTourismValueById(widget.tourism.id);
-      final value = localDatabaseProvider.tourism == null
-          ? false
-          : localDatabaseProvider.tourism!.id == widget.tourism.id;
+      final value = localDatabaseProvider.checkItemBookmark(widget.tourism.id);
       bookmarkIconProvider.isBookmarked = value;
     });
   }
