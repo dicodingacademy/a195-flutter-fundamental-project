@@ -74,4 +74,9 @@ class LocalDatabaseProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  bool checkItemBookmark(int id) {
+    final isSameTourism = _tourism?.id == id;
+    return isSameTourism;
+  }
 }
