@@ -58,12 +58,12 @@ class LocalDatabaseService {
   }
 
   // todo-01-local-09: get a single item by id
-  Future<Tourism> getItemById(int id) async {
+  Future<Tourism?> getItemById(int id) async {
     final db = await _initializeDb();
     final results =
         await db.query(_tableName, where: "id = ?", whereArgs: [id], limit: 1);
 
-    return results.map((result) => Tourism.fromJson(result)).first;
+    return results.isEmpty ? null : Tourism.fromJson(results.first);
   }
 
   // todo-01-local-10: delete an item by id
